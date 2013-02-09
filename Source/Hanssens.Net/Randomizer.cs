@@ -16,9 +16,6 @@ namespace Hanssens.Net
 
         public Randomizer()
         {
-            //var seed = new Random();
-            //seed.Next(Int32.MinValue, Int32.MaxValue);
-            //this.randomizer = new Random(seed.Next());
             this.randomizer = new Random();
             this.Kick();
         }
@@ -30,8 +27,6 @@ namespace Hanssens.Net
         {
             var seed = new Random(randomizer.Next());
             randomizer.Next(seed.Next());
-
-            //randomizer.Next(Int32.MinValue, Int32.MaxValue);
         }
 
         /// <summary>
@@ -42,7 +37,7 @@ namespace Hanssens.Net
             this.Kick();
 
             // Create a filtered list, containing only T-types
-            List<T> filteredCollection = new List<T>();
+            var filteredCollection = new List<T>();
             foreach (T item in collection)
                 filteredCollection.Add(item);
 
