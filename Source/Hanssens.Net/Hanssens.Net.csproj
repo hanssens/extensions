@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\LinqExtensions.cs" />
     <Compile Include="Extensions\RandomizerExtensions.cs" />
     <Compile Include="Extensions\SelectListExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
