@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace System.Linq
+namespace Hanssens.Net.Extensions
 {
     /// <summary>
     /// Provides extensions for the System.Linq namespace.
     /// </summary>
-    public static class LinqExtensions
+    public static class InExtensions
     {
         /// <summary>
         /// Filters a collection by a list of parameters, equivalant to a 'WHERE IN' clause.

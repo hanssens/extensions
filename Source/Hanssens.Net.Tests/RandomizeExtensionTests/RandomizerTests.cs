@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Hanssens.Net.Tests
 {
     [TestClass]
-    public class RandomizerTests
+    public class RandomizeExtensionTests
     {
 
         [TestMethod]

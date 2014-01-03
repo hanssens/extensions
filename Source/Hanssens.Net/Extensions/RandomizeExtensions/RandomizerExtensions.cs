@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hanssens.Net
+namespace Hanssens.Net.Extensions
 {
     public static class RandomizerExtensions
     {
+
         public static T Random<T>(this IEnumerable<T> list)
         {
             var returnValue = default(T);

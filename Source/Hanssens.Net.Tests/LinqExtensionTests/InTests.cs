@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Hanssens.Net.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace Hanssens.Net.Tests
+namespace Hanssens.Net.Tests.InTests
 {
     [TestClass]
     public class LinqExtensionTests
