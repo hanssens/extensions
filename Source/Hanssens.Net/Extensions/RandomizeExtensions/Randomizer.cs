@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hanssens.Net
+namespace Hanssens.Net.Extensions
 {
     /// <summary>
     /// Utilities for randomizing.
@@ -79,7 +79,7 @@ namespace Hanssens.Net
 
         public void Dispose()
         {
-            // should do something here... or not
+            // Nothing to see here, move along...
         }
     }
 }

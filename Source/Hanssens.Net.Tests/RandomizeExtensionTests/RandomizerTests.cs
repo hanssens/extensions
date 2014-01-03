@@ -1,4 +1,6 @@
 ﻿using System;
+using FluentAssertions;
+using Hanssens.Net.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
@@ -9,7 +11,7 @@ namespace Hanssens.Net.Tests
     {
 
         [TestMethod]
-        public void ConstructorTest()
+        public void Randomizer_Should_Initialize()
         {
             var target = new Randomizer();
             Assert.IsNotNull(target);
@@ -17,7 +19,7 @@ namespace Hanssens.Net.Tests
         }
 
         [TestMethod]
-        public void DisposableConstructorTest()
+        public void Randomizer_Should_Initialize_And_Dispose()
         {
             using (var target = new Randomizer())
             {
@@ -27,7 +29,7 @@ namespace Hanssens.Net.Tests
         }
 
         [TestMethod]
-        public void TwoRandomEntriesFromACollection()
+        public void Randomizer_Should_Return_Random_Entries_From_A_Collection()
         {
             var values = new List<string>();
             for (int i = 0; i < 99; i++)
@@ -46,7 +48,7 @@ namespace Hanssens.Net.Tests
         }
 
         [TestMethod]
-        public void MultipleRandomizersShouldGiveDifferentResults()
+        public void Randomizer_Should_Give_Different_Results_Each_Time_Initialized()
         {
             var values = new List<string>();
             for (int i = 0; i < 99; i++)
@@ -62,10 +64,10 @@ namespace Hanssens.Net.Tests
                 secondValue = randomizer.Random(values);
             }
 
-            // Assert that in the list of 100 values, two randomly choses will not be the same
+            // Assert that in the list of lots of values, two randomly choses will not be the same
             // Statitically, this is a rubbish test; there is always a slight probability the
             // two values are the same
-            Assert.AreNotEqual(firstValue, secondValue);
+            firstValue.Should().NotBe(secondValue, "multiple randomizers should give different results");
         }
     }
 }
