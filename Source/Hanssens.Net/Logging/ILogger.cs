@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Concurrent;
 
 namespace Hanssens.Net.Logging
 {
@@ -15,6 +16,9 @@ namespace Hanssens.Net.Logging
 
 	public interface ILogger
 	{
+		ConcurrentBag<LogLine> Lines { get; }
+
+		void Clear();
 		void Write(string message);
 		void Write(string message, LogTypes logType);
 		void Write(LogLine logLine);

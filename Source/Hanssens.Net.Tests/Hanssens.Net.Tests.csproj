@@ -46,6 +46,7 @@
     <Compile Include="LinqExtensionTests\InTests.cs" />
     <Compile Include="RandomizeExtensionTests\RandomizerTests.cs" />
     <Compile Include="StringExtensionTests\LongestWordTests.cs" />
+    <Compile Include="LoggingTests\BaseLoggerTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -59,4 +60,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <ItemGroup>
+    <Folder Include="LoggingTests\" />
+  </ItemGroup>
 </Project>
