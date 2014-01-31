@@ -51,6 +51,7 @@
     <Compile Include="Logging\Loggers\ConsoleLogger.cs" />
     <Compile Include="Logging\Loggers\FileLogger.cs" />
     <Compile Include="Logging\Loggers\BaseLogger.cs" />
+    <Compile Include="IO\CsvExport.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -63,5 +64,6 @@
   <ItemGroup>
     <Folder Include="Logging\" />
     <Folder Include="Logging\Loggers\" />
+    <Folder Include="IO\" />
   </ItemGroup>
 </Project>
