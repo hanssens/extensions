@@ -1,42 +1,41 @@
 ﻿using System;
 using FluentAssertions;
 using Hanssens.Net.Extensions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using NUnit.Framework;
 
 namespace Hanssens.Net.Tests
 {
-    [TestFixture]
+    [TestClass]
     public class RandomizeExtensionTests
     {
 
-        [Test]
+        [TestMethod]
         public void Randomizer_Should_Initialize()
         {
-            var target = new Hanssens.Net.Extensions.Randomizer();
+            var target = new Randomizer();
             Assert.IsNotNull(target);
-			target.Should ().NotBeNull ();
-			target.Should ().BeOfType<Hanssens.Net.Extensions.Randomizer> ();
+            Assert.IsInstanceOfType(target, typeof(Randomizer));
         }
 
-        [Test]
+        [TestMethod]
         public void Randomizer_Should_Initialize_And_Dispose()
         {
-            using (var target = new Hanssens.Net.Extensions.Randomizer())
+            using (var target = new Randomizer())
             {
-				target.Should ().NotBeNull ();
-				target.Should ().BeOfType<Hanssens.Net.Extensions.Randomizer> ();
+                Assert.IsNotNull(target);
+                Assert.IsInstanceOfType(target, typeof(Randomizer));
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Randomizer_Should_Return_Random_Entries_From_A_Collection()
         {
             var values = new List<string>();
             for (int i = 0; i < 99; i++)
                 values.Add("UserNo" + i);
 
-            using (var randomizer = new Hanssens.Net.Extensions.Randomizer())
+            using (var randomizer = new Randomizer())
             {
                 var firstValue = randomizer.Random(values);
                 var secondValue = randomizer.Random(values);
@@ -48,7 +47,7 @@ namespace Hanssens.Net.Tests
             }
         }
 
-        [Test]
+        [TestMethod]
         public void Randomizer_Should_Give_Different_Results_Each_Time_Initialized()
         {
             var values = new List<string>();
@@ -57,11 +56,11 @@ namespace Hanssens.Net.Tests
 
             string firstValue = string.Empty, secondValue = string.Empty;
 
-            using (var randomizer = new Hanssens.Net.Extensions.Randomizer()) {
+            using (var randomizer = new Randomizer()) {
                 firstValue = randomizer.Random(values);
             }
 
-            using (var randomizer = new Hanssens.Net.Extensions.Randomizer()) {
+            using (var randomizer = new Randomizer()) {
                 secondValue = randomizer.Random(values);
             }
 
