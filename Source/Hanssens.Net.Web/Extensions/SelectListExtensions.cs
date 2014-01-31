@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Hanssens.Net.Extensions
+namespace Hanssens.Net.Web.Extensions
 {
     public static class SelectListExtensions
     {
