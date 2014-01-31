@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Hanssens.Net.Extensions;
-using NUnit.Framework;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Hanssens.Net.Tests.InTests
 {
-	[TestFixture]
+    [TestClass]
     public class LinqExtensionTests
     {
 
 
-		[Test]
+        [TestMethod]
         public void In_Should_Fetch_Single_Value_From_Collection()
         {
             var expected = "Harry";
@@ -24,7 +24,7 @@ namespace Hanssens.Net.Tests.InTests
             target.Should().BeEquivalentTo(expected, "Harry should be found");
         }
 
-        [Test]
+        [TestMethod]
         public void In_Should_Fetch_Single_Object_From_Collection()
         {
             // Note: Requires object to implement IEquality (or override Equals/GetHashCode)
@@ -48,7 +48,7 @@ namespace Hanssens.Net.Tests.InTests
 
 
 
-        [Test]
+        [TestMethod]
         public void In_Should_Filter_Multiple_Values_From_Collection()
         {
             var expectedValues = new int[] {1, 2, 3, 4, 5};
