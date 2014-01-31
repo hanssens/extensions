@@ -30,7 +30,7 @@ namespace Hanssens.Net.Logging
 				writer.Write(output.ToString());
 			}
 
-			Lines.Clear();
+			Clear ();
 		}
 	}
 }

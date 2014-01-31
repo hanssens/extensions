@@ -35,7 +35,8 @@ namespace Hanssens.Net.Logging
 				Console.ResetColor();
 			}
 
-			Lines.Clear();
+
+			Clear ();
 		}
 	}
 }

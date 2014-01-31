@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace Hanssens.Net.Logging
 {
@@ -8,12 +8,23 @@ namespace Hanssens.Net.Logging
 	/// </summary>
 	public abstract class BaseLogger : ILogger, IDisposable
 	{
-		public List<LogLine> Lines { get; private set; }
+		public ConcurrentBag<LogLine> Lines { get; private set; }
 
 		public BaseLogger()
 		{
-			Lines = new List<LogLine>();
+			Lines = new ConcurrentBag<LogLine>();
 		}
+
+		public void Clear()
+		{
+			// considering the ConcurrentBag is thread-safe, this requires a 
+			// bit dirty workaround for clearing the bag...
+			lock (Lines) {
+				Lines = new ConcurrentBag<LogLine> ();
+			}
+		}
+
+		public abstract void Flush();
 
 		public virtual void Write(string message)
 		{
@@ -34,11 +45,9 @@ namespace Hanssens.Net.Logging
 			Lines.Add(logLine);
 		}
 
-		public abstract void Flush();
-
 		public void Dispose()
 		{
-			this.Lines.Clear();
+			this.Clear ();
 		}
 	}
 
