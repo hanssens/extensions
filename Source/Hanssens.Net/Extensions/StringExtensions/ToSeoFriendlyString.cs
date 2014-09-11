@@ -11,7 +11,7 @@ namespace Hanssens.Net
 		/// <returns>The seo friendly string.</returns>
 		public static string ToSeoFriendlyString(this string input)
 		{
-			return Regex.Replace(input, @"[^A-Za-z0-9_\.~]+", "-")
+			return Regex.Replace(input, @"[^A-Za-z0-9\.~]+", "-")
 				.ToLowerInvariant();
 		}
 	}
