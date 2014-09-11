@@ -3,8 +3,6 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{01B3732B-C7FA-47F9-B32A-DD6676648F78}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Hanssens.Net.Tests</RootNamespace>
@@ -47,6 +45,7 @@
     <Compile Include="RandomizeExtensionTests\RandomizerTests.cs" />
     <Compile Include="StringExtensionTests\LongestWordTests.cs" />
     <Compile Include="LoggingTests\BaseLoggerTests.cs" />
+    <Compile Include="StringExtensionTests\ToSeoFriendlyStringTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />

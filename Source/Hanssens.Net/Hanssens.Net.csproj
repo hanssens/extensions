@@ -11,8 +11,6 @@
     <AssemblyName>Hanssens.Net</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <ProductVersion>12.0.0</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -52,6 +50,7 @@
     <Compile Include="Logging\Loggers\FileLogger.cs" />
     <Compile Include="Logging\Loggers\BaseLogger.cs" />
     <Compile Include="IO\CsvExport.cs" />
+    <Compile Include="Extensions\StringExtensions\ToSeoFriendlyString.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
