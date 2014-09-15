@@ -70,5 +70,19 @@ namespace Hanssens.Net.Tests.StringExtensionTests
 			target.Should ().NotBeNullOrEmpty ();
 			target.Should().BeEquivalentTo("this-is-a-sentence-with-dots-and-hyphens");
 		}
+
+		[Test]
+		public void ToSeoFriendlyString_Should_Allow_Starting_With_Numbers()
+		{
+			// arrange
+			var sentence = "-2014-start-with-number-should-be-retained-";
+
+			// act
+			var target = sentence.ToSeoFriendlyString ();
+
+			// assert
+			target.Should ().NotBeNullOrEmpty ();
+			target.Should().BeEquivalentTo("2014-start-with-number-should-be-retained");
+		}
     }
 }
