@@ -13,7 +13,7 @@ namespace Hanssens.Net.Tests.StringExtensionTests
 		public void ToSeoFriendlyString_Should_Strip_All_NonAlphaNumeric_Characters()
         {
 			// arrange
-            var sentence = "This: is something that should be !@#$ _ clean";
+            var sentence = "This: is something that should be +^~!@#$ _ clean";
 
 			// act
 			var target = sentence.ToSeoFriendlyString ();
@@ -55,7 +55,20 @@ namespace Hanssens.Net.Tests.StringExtensionTests
 				if (!Char.IsLower(c))
 					Assert.Fail (String.Format ("Non-lowercase character '{0}' found in pharse '{1}'", c.ToString (), target));
 			}
+		}
 
+		[Test]
+		public void ToSeoFriendlyString_Should_Strip_DotsAndHyphens_From_Beginning()
+		{
+			// arrange
+			var sentence = "--.This is a sentence. with dots. and -hyphens--";
+
+			// act
+			var target = sentence.ToSeoFriendlyString ();
+
+			// assert
+			target.Should ().NotBeNullOrEmpty ();
+			target.Should().BeEquivalentTo("this-is-a-sentence-with-dots-and-hyphens");
 		}
     }
 }
