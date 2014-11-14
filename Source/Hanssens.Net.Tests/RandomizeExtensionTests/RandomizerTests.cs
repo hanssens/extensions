@@ -51,12 +51,14 @@ namespace Hanssens.Net.Tests
         [Test]
         public void Randomizer_Should_Give_Different_Results_Each_Time_Initialized()
         {
+			// Arrange
             var values = new List<string>();
             for (int i = 0; i < 99; i++)
                 values.Add("UserNo" + i);
 
             string firstValue = string.Empty, secondValue = string.Empty;
 
+			// Act - initialize two Randomizer instances and fetch a random value
             using (var randomizer = new Hanssens.Net.Extensions.Randomizer()) {
                 firstValue = randomizer.Random(values);
             }
@@ -65,7 +67,7 @@ namespace Hanssens.Net.Tests
                 secondValue = randomizer.Random(values);
             }
 
-            // Assert that in the list of lots of values, two randomly choses will not be the same
+            // Assert - that in the list of lots of values, two randomly choses will not be the same
             // Statitically, this is a rubbish test; there is always a slight probability the
             // two values are the same
             firstValue.Should().NotBe(secondValue, "multiple randomizers should give different results");

@@ -16,7 +16,14 @@ namespace Hanssens.Net.Extensions
 
         public Randomizer()
         {
-            this.randomizer = new Random();
+			// initialize a semi-unique seed, based on a 
+			// newly generated Guid's hashcode
+			var uniqueSeed = Guid.NewGuid ().GetHashCode ();
+
+			// initialize a new Random instance, based on the seed
+			this.randomizer = new Random(uniqueSeed);
+
+			// start kicking it
             this.Kick();
         }
 
@@ -30,7 +37,7 @@ namespace Hanssens.Net.Extensions
         }
 
         /// <summary>
-        /// Retrieve a random item from the strong typed collection.
+        /// Fetches a random item from the provided collection.
         /// </summary>
         public T Random<T>(IEnumerable<T> collection)
         {
