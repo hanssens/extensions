@@ -47,6 +47,7 @@
     <Compile Include="LoggingTests\BaseLoggerTests.cs" />
     <Compile Include="StringExtensionTests\ToSeoFriendlyStringTests.cs" />
     <Compile Include="CalculationsTests\UnitConverterTests.cs" />
+    <Compile Include="CryptographyTests\PasswordHashTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -63,5 +64,6 @@
   <ItemGroup>
     <Folder Include="LoggingTests\" />
     <Folder Include="CalculationsTests\" />
+    <Folder Include="CryptographyTests\" />
   </ItemGroup>
 </Project>
