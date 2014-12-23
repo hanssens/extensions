@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <id>Hanssens.Net.Extensions</id>
+        <version>1.0.0.0</version>
+        <title>Hanssens' .NET Extensions</title>
+        <authors>Juliën Hanssens</authors>
+        <projectUrl>https://github.com/hanssens/extensions</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Helpers and extensions for .NET</description>
+    </metadata>
+    <files>
+        <file src="Hanssens.Net.dll" target="lib\MonoMac\Hanssens.Net.dll" />
+        <file src="Hanssens.Net.dll" target="lib\net45\Hanssens.Net.dll" />
+    </files>
+</package>
