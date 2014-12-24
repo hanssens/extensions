@@ -48,6 +48,11 @@
     <Compile Include="StringExtensionTests\ToSeoFriendlyStringTests.cs" />
     <Compile Include="CalculationsTests\UnitConverterTests.cs" />
     <Compile Include="CryptographyTests\PasswordHashTests.cs" />
+    <Compile Include="ReflectionTests\ExtractPropertyValueTests.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerWithAdditionalProperties.cs" />
+    <Compile Include="Entities\CustomerWithLowerCaseProperties.cs" />
+    <Compile Include="Entities\CustomerWithoutIdAndName.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -65,5 +70,7 @@
     <Folder Include="LoggingTests\" />
     <Folder Include="CalculationsTests\" />
     <Folder Include="CryptographyTests\" />
+    <Folder Include="ReflectionTests\" />
+    <Folder Include="Entities\" />
   </ItemGroup>
 </Project>

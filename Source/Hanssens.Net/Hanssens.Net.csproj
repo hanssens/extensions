@@ -53,6 +53,7 @@
     <Compile Include="Extensions\StringExtensions\ToSeoFriendlyString.cs" />
     <Compile Include="Calculations\UnitConverter.cs" />
     <Compile Include="Cryptography\PasswordHash.cs" />
+    <Compile Include="Reflection\Extract.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -68,5 +69,6 @@
     <Folder Include="IO\" />
     <Folder Include="Calculations\" />
     <Folder Include="Cryptography\" />
+    <Folder Include="Reflection\" />
   </ItemGroup>
 </Project>
