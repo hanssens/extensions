@@ -58,6 +58,7 @@
     <Compile Include="Cryptography\PasswordHash.cs" />
     <Compile Include="Reflection\Extract.cs" />
     <Compile Include="IO\JsonRequest.cs" />
+    <Compile Include="Extensions\JsonExtensions\JsonExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
