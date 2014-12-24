@@ -54,6 +54,7 @@
     <Compile Include="Calculations\UnitConverter.cs" />
     <Compile Include="Cryptography\PasswordHash.cs" />
     <Compile Include="Reflection\Extract.cs" />
+    <Compile Include="IO\CsvImport.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
