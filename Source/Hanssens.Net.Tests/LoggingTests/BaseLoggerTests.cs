@@ -36,7 +36,7 @@ namespace Hanssens.Net.Tests
 			var line = "this is a single line, which will be added";
 			logger.Write (line);
 
-			logger.Lines.Count.Should ().Be (1, reason: "exactly 1 LogLine should be added");
+			logger.Lines.Count.Should ().Be (1, because: "exactly 1 LogLine should be added");
 			logger.Lines.First ().Message.Should ().BeEquivalentTo(line);
 		}
 
@@ -49,7 +49,7 @@ namespace Hanssens.Net.Tests
 			var line = "this is a single line, which will be added";
 			logger.Write (line);
 
-			logger.Lines.Count.Should ().Be (1, reason: "exactly 1 LogLine should be added");
+			logger.Lines.Count.Should ().Be (1, because: "exactly 1 LogLine should be added");
 			logger.Clear ();
 
 			logger.Lines.Should ().BeEmpty ();

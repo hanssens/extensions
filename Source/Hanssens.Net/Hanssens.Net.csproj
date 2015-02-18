@@ -37,6 +37,9 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extensions\LinqExtensions\In.cs" />
@@ -53,6 +56,10 @@
     <Compile Include="Extensions\StringExtensions\ToSeoFriendlyString.cs" />
     <Compile Include="Calculations\UnitConverter.cs" />
     <Compile Include="Cryptography\PasswordHash.cs" />
+    <Compile Include="Reflection\Extract.cs" />
+    <Compile Include="IO\JsonRequest.cs" />
+    <Compile Include="Extensions\JsonExtensions\JsonExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions\IEnumerableExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -68,5 +75,11 @@
     <Folder Include="IO\" />
     <Folder Include="Calculations\" />
     <Folder Include="Cryptography\" />
+    <Folder Include="Reflection\" />
+    <Folder Include="Extensions\JsonExtensions\" />
+    <Folder Include="Extensions\IEnumerableExtensions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>

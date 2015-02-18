@@ -30,15 +30,21 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net40\FluentAssertions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.7\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinqExtensionTests\InTests.cs" />
@@ -48,6 +54,14 @@
     <Compile Include="StringExtensionTests\ToSeoFriendlyStringTests.cs" />
     <Compile Include="CalculationsTests\UnitConverterTests.cs" />
     <Compile Include="CryptographyTests\PasswordHashTests.cs" />
+    <Compile Include="ReflectionTests\ExtractPropertyValueTests.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerWithAdditionalProperties.cs" />
+    <Compile Include="Entities\CustomerWithLowerCaseProperties.cs" />
+    <Compile Include="Entities\CustomerWithoutIdAndName.cs" />
+    <Compile Include="IO\JsonRequestTests.cs" />
+    <Compile Include="JsonExtensionTests\IsValidJsonTests.cs" />
+    <Compile Include="IEnumerableExtensionTests\IsNullOrEmptyTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
@@ -65,5 +79,10 @@
     <Folder Include="LoggingTests\" />
     <Folder Include="CalculationsTests\" />
     <Folder Include="CryptographyTests\" />
+    <Folder Include="ReflectionTests\" />
+    <Folder Include="Entities\" />
+    <Folder Include="JsonExtensionTests\" />
+    <Folder Include="IO\" />
+    <Folder Include="IEnumerableExtensionTests\" />
   </ItemGroup>
 </Project>
