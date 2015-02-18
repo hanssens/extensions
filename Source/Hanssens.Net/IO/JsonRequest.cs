@@ -16,6 +16,16 @@ namespace Hanssens.Net.IO
 	public static class JsonRequest
 	{
 		/// <summary>
+		/// Executes a JSON webrequest, using DELETE, and returns the raw JSON response as string.
+		/// </summary>
+		/// <param name="requestUri">The full request URI / endpoint to call.</param>
+		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
+		public static JsonResponse Delete(string requestUri, object args = null){
+			var response = _Execute (requestUri, "DELETE", args);
+			return response;
+		}
+
+		/// <summary>
 		/// Executes a JSON webrequest, using GET, and returns the raw JSON response as string.
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
