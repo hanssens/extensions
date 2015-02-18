@@ -2,6 +2,7 @@
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
+using System.Diagnostics;
 
 namespace Hanssens.Net.IO
 {
@@ -68,6 +69,9 @@ namespace Hanssens.Net.IO
 
 			var returnValue = new JsonResponse ();
 
+			// initialize a stopwatch, to start counting the duration
+			var stopwatch = Stopwatch.StartNew ();
+
 			try {
 				using (var response = (HttpWebResponse)request.GetResponse())
 				{
@@ -82,9 +86,12 @@ namespace Hanssens.Net.IO
 				}
 			} catch(WebException ex) {
 				returnValue.ErrorMessage = "WebException: " + ex.Message;
-			}
-			catch (Exception ex) {
+			} catch (Exception ex) {
 				returnValue.ErrorMessage = ex.Message;
+			} finally {
+				// stop the clock
+				stopwatch.Stop ();
+				returnValue.Duration = stopwatch.ElapsedMilliseconds;
 			}
 
 			return returnValue;
