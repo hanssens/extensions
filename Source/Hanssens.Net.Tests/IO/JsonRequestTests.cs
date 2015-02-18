@@ -19,6 +19,18 @@ namespace Hanssens.Net.Tests.IO
 			// assert
 			target.Should ().NotBeNullOrEmpty ();
 		}
+
+		[Test]
+		public void JsonRequest_Post_Should_Return_Json_String(){
+			// arrange
+			var endpoint = @"http://ip.jsontest.com/";
+
+			// act
+			var target = JsonRequest.Post (endpoint);
+
+			// assert
+			target.Should ().NotBeNullOrEmpty ();
+		}
 	}
 }
 
