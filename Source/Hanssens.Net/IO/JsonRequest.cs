@@ -15,7 +15,7 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static string Get(string requestUri, object args = null){
+		public static JsonResponse Get(string requestUri, object args = null){
 
 			var response = _Execute (requestUri, "GET", args);
 			return response;
@@ -26,17 +26,17 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static string Post(string requestUri, object args = null){
+		public static JsonResponse Post(string requestUri, object args = null){
 
 			var response = _Execute (requestUri, "POST", args);
 			return response;
 		}
 			
-		private static string _Execute(string requestUri, string httpMethod) {
+		private static JsonResponse _Execute(string requestUri, string httpMethod) {
 			return _Execute (requestUri, httpMethod, null);
 		}
 
-		private static string _Execute(string requestUri, string httpMethod, object args) {
+		private static JsonResponse _Execute(string requestUri, string httpMethod, object args) {
 		
 			// prepare the request for a specific json call
 			var request = (HttpWebRequest)WebRequest.Create(requestUri);
@@ -66,17 +66,28 @@ namespace Hanssens.Net.IO
 				}
 			}
 
-			var jsonResponse = string.Empty;
+			var returnValue = new JsonResponse ();
 
-			using (var response = (HttpWebResponse)request.GetResponse())
-			{
-				using (var reader = new StreamReader(response.GetResponseStream()))
+			try {
+				using (var response = (HttpWebResponse)request.GetResponse())
 				{
-					jsonResponse = reader.ReadToEnd();
+					using (var reader = new StreamReader(response.GetResponseStream()))
+					{
+						// set the 'value'
+						returnValue.Value = reader.ReadToEnd();
+
+						// indicate that the operation was a success
+						returnValue.Success = true;
+					}
 				}
+			} catch(WebException ex) {
+				returnValue.ErrorMessage = "WebException: " + ex.Message;
+			}
+			catch (Exception ex) {
+				returnValue.ErrorMessage = ex.Message;
 			}
 
-			return jsonResponse;
+			return returnValue;
 		}
 			
 	}

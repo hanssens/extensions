@@ -17,7 +17,10 @@ namespace Hanssens.Net.Tests.IO
 			var target = JsonRequest.Get (endpoint);
 
 			// assert
-			target.Should ().NotBeNullOrEmpty ();
+			target.Should ().NotBeNull ();
+			target.Success.Should ().BeTrue (because: target.ErrorMessage);
+			target.Value.Should ().NotBeNullOrEmpty ();
+			target.ErrorMessage.Should ().BeNull ();
 		}
 
 		[Test]
@@ -29,7 +32,10 @@ namespace Hanssens.Net.Tests.IO
 			var target = JsonRequest.Post (endpoint);
 
 			// assert
-			target.Should ().NotBeNullOrEmpty ();
+			target.Should ().NotBeNull ();
+			target.Success.Should ().BeTrue (because: target.ErrorMessage);
+			target.Value.Should ().NotBeNullOrEmpty ();
+			target.ErrorMessage.Should ().BeNull ();
 		}
 	}
 }
