@@ -21,7 +21,6 @@ namespace Hanssens.Net.IO
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
 		public static JsonResponse Get(string requestUri, object args = null){
-
 			var response = _Execute (requestUri, "GET", args);
 			return response;
 		}
@@ -32,8 +31,17 @@ namespace Hanssens.Net.IO
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
 		public static JsonResponse Post(string requestUri, object args = null){
-
 			var response = _Execute (requestUri, "POST", args);
+			return response;
+		}
+
+		/// <summary>
+		/// Executes a JSON webrequest, using PUT, and returns the raw JSON response as string.
+		/// </summary>
+		/// <param name="requestUri">The full request URI / endpoint to call.</param>
+		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
+		public static JsonResponse Put(string requestUri, object args = null){
+			var response = _Execute (requestUri, "PUT", args);
 			return response;
 		}
 			
