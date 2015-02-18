@@ -9,12 +9,12 @@ namespace Hanssens.Net.Tests.IO
 	public class JsonRequestTests
 	{
 		[Test]
-		public void JsonRequest_JsonGet_Should_Return_Json_String(){
+		public void JsonRequest_Get_Should_Return_Json_String(){
 			// arrange
 			var endpoint = @"http://ip.jsontest.com/";
 
 			// act
-			var target = JsonRequest.JsonGet (endpoint);
+			var target = JsonRequest.Get (endpoint);
 
 			// assert
 			target.Should ().NotBeNullOrEmpty ();

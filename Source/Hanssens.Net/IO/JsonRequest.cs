@@ -5,19 +5,32 @@ using Newtonsoft.Json;
 
 namespace Hanssens.Net.IO
 {
+	/// <summary>
+	/// Provides access to a set of simple usable JSON calls.
+	/// </summary>
 	public static class JsonRequest
 	{
 		/// <summary>
 		/// Executes a JSON webrequest, using GET, and returns the raw JSON response as string.
 		/// </summary>
-		public static string JsonGet(string requestUri){
+		public static string Get(string requestUri){
 
-			var json = string.Empty;
+			var response = _Execute (requestUri, "GET");
+			return response;
+		}
+
+		private static string _Execute(string requestUri, string httpMethod) {
+			return _Execute (requestUri, httpMethod, null);
+		}
+
+		private static string _Execute(string requestUri, string httpMethod, object args) {
+
 
 			// prepare the request for a specific json call
 			var request = (HttpWebRequest)WebRequest.Create(requestUri);
 			request.Accept = "application/json";
-			request.Method = WebRequestMethods.Http.Get;
+			//$$request.Method = WebRequestMethods.Http.Get;
+			request.Method = httpMethod;
 
 			// Some APIs want you to supply the appropriate "Accept" header 
 			// in the request to get the wanted response type.
@@ -27,16 +40,32 @@ namespace Hanssens.Net.IO
 			// Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
 			request.ContentType = "application/json; charset=utf-8";
 
-			using (var response = (HttpWebResponse)request.GetResponse())
-			{
-				// parse
-				using (var reader = new StreamReader(response.GetResponseStream()))
-				{
-					json = reader.ReadToEnd();
+			// determine if there are any arguments provided, which needs to be serialized to json and
+			// embedded into the request body, before we actually start asking for a response
+			if (args != null) {
+
+				// serialize the arguments to json
+				var jsonSerializedArguments = JsonConvert.SerializeObject(args);
+
+				// ... and bake them into the request
+				using (var requestStream = new StreamWriter (request.GetRequestStream ())) {
+					requestStream.Write (jsonSerializedArguments);
+					requestStream.Flush ();
+					requestStream.Close ();
 				}
 			}
 
-			return json;
+			var jsonResponse = string.Empty;
+
+			using (var response = (HttpWebResponse)request.GetResponse())
+			{
+				using (var reader = new StreamReader(response.GetResponseStream()))
+				{
+					jsonResponse = reader.ReadToEnd();
+				}
+			}
+
+			return jsonResponse;
 		}
 			
 	}
