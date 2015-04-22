@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace Hanssens.Net
+namespace Hanssens.Net.Extensions
 {
 	public static class ToSeoFriendlyStringExtensions
 	{

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hanssens.Net
+namespace Hanssens.Net.Calculations
 {
 	/// <summary>
 	/// The UnitConverter class provides static helpers for accurately converting units.

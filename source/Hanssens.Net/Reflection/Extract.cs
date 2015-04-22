@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Hanssens.Net
+namespace Hanssens.Net.Reflection
 {
 	/// <summary>
 	/// Provide utilities for inspecting and extracting information from object instances.

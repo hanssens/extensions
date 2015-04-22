@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hanssens.Net
+namespace Hanssens.Net.IO
 {
 	/// <summary>
 	/// Json response.

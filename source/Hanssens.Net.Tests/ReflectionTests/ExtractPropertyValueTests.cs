@@ -1,5 +1,6 @@
 ﻿using System;
 using FluentAssertions;
+using Hanssens.Net.Reflection;
 using NUnit.Framework;
 using Hanssens.Net.Tests.Entities;
 
