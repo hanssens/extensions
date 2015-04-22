@@ -10,21 +10,5 @@ This package provides helpers and extensions for .NET projects. It's just a [bun
 
 Simply install the package through NuGet:
 
-> Install-Package Hanssens.Net.Extensions
-
-###
-
-## Extensions
-
-### In(T)
-* In(T) Extension: Provides a "WHERE IN" clause for collections.
-
-### Randomizer
-
-* **Randomizer():** Provides extended functionality for random and .NET's native Random() objet.  
-* **Random(T):** Fetches a random value from a collection.
-
-### StringExtensions
-
-* **LongestWord()**: Returns the longest word in a sentence.
+    Install-Package Hanssens.Net.Extensions
 
