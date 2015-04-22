@@ -30,15 +30,22 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="nunit.framework">
-      <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.2.2.0.0\lib\net40\FluentAssertions.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.2.2\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LinqExtensionTests\InTests.cs" />
@@ -48,9 +55,19 @@
     <Compile Include="StringExtensionTests\ToSeoFriendlyStringTests.cs" />
     <Compile Include="CalculationsTests\UnitConverterTests.cs" />
     <Compile Include="CryptographyTests\PasswordHashTests.cs" />
+    <Compile Include="ReflectionTests\ExtractPropertyValueTests.cs" />
+    <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\CustomerWithAdditionalProperties.cs" />
+    <Compile Include="Entities\CustomerWithLowerCaseProperties.cs" />
+    <Compile Include="Entities\CustomerWithoutIdAndName.cs" />
+    <Compile Include="IO\JsonRequestTests.cs" />
+    <Compile Include="JsonExtensionTests\IsValidJsonTests.cs" />
+    <Compile Include="IEnumerableExtensionTests\IsNullOrEmptyTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
@@ -61,9 +78,5 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <ItemGroup>
-    <Folder Include="LoggingTests\" />
-    <Folder Include="CalculationsTests\" />
-    <Folder Include="CryptographyTests\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>
