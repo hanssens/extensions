@@ -1,12 +1,10 @@
 # Extensions for .NET
 by [@jhanssens](https://twitter.com/jhanssens)
 
-## In Short
+## Introduction
+This package provides helpers and extensions for .NET projects. It's just a [bunch of gists](https://gist.github.com/hanssens) just to make [my own life as a developer](http://hanssens.com) a bit more convenient. More importantly, it is built with 100% pure love. And 100% in pure, managed c#. 
 
-### Summary
-Provides helpers and extensions for .NET projects. It's just a [bunch of gists](https://gist.github.com/hanssens) just to make [my life](http://hanssens.com) a bit easier. 
-
-###  
+"Would you like to know more?" => Simply [RTFM, on the wiki](https://github.com/hanssens/extensions/wiki).
 
 ### Getting Started
 
