@@ -8,8 +8,9 @@ This package provides helpers and extensions for .NET projects. It's just a [bun
 
 ### Getting Started
 
-1. Compile the source
-2. Add a reference to the **Hanssens.Net.dll** assembly
+Simply install the package through NuGet:
+
+> Install-Package Hanssens.Net.Extensions
 
 ###
 
