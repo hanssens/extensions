@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Linq;
 
 namespace Hanssens.Net.IO
 {
@@ -20,8 +22,8 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Delete(string requestUri, object args = null){
-			var response = _Execute (requestUri, "DELETE", args);
+		public static JsonResponse Delete(string requestUri, object args = null, Dictionary<string , string> headers = null){
+			var response = _Execute (requestUri, "DELETE", args, headers);
 			return response;
 		}
 
@@ -30,8 +32,9 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Get(string requestUri, object args = null){
-			var response = _Execute (requestUri, "GET", args);
+		public static JsonResponse Get(string requestUri, Dictionary<string, string> headers = null)
+        {
+			var response = _Execute (requestUri, "GET", args: null, headers: headers);
 			return response;
 		}
 
@@ -40,8 +43,9 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Post(string requestUri, object args = null){
-			var response = _Execute (requestUri, "POST", args);
+		public static JsonResponse Post(string requestUri, object args = null, Dictionary<string, string> headers = null)
+        {
+			var response = _Execute (requestUri, "POST", args, headers);
 			return response;
 		}
 
@@ -50,16 +54,17 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Put(string requestUri, object args = null){
-			var response = _Execute (requestUri, "PUT", args);
+		public static JsonResponse Put(string requestUri, object args = null, Dictionary<string, string> headers = null)
+        {
+			var response = _Execute (requestUri, "PUT", args, headers);
 			return response;
 		}
 			
 		private static JsonResponse _Execute(string requestUri, string httpMethod) {
-			return _Execute (requestUri, httpMethod, null);
+			return _Execute (requestUri, httpMethod, args: null, headers: null);
 		}
 
-		private static JsonResponse _Execute(string requestUri, string httpMethod, object args) {
+		private static JsonResponse _Execute(string requestUri, string httpMethod, object args, Dictionary<string, string> headers = null) {
 		
 			// prepare the request for a specific json call
 			var request = (HttpWebRequest)WebRequest.Create(requestUri);
@@ -85,10 +90,17 @@ namespace Hanssens.Net.IO
 			// Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
 			request.ContentType = "application/json; charset=utf-8";
 
+            // append headers, if provided
+		    if (headers != null && headers.Any())
+		    {
+                request.Headers = new WebHeaderCollection();
+                foreach (var h in headers)
+                    request.Headers.Add(h.Key, h.Value);
+            }
+
 			// determine if there are any arguments provided, which needs to be serialized to json and
 			// embedded into the request body, before we actually start asking for a response
 			if (args != null) {
-
 
 				// serialize the arguments to json
 				var jsonSerializedArguments = JsonConvert.SerializeObject(args);
