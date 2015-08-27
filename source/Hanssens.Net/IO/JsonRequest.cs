@@ -30,8 +30,8 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Get(string requestUri, object args = null){
-			var response = _Execute (requestUri, "GET", args);
+		public static JsonResponse Get(string requestUri){
+			var response = _Execute (requestUri, "GET", null);
 			return response;
 		}
 
