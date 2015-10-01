@@ -48,6 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CryptographyTests\EncodeTests.cs" />
     <Compile Include="LinqExtensionTests\InTests.cs" />
     <Compile Include="RandomizeExtensionTests\RandomizerTests.cs" />
     <Compile Include="StringExtensionTests\LongestWordTests.cs" />

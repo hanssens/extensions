@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cryptography\Encode.cs" />
     <Compile Include="Extensions\LinqExtensions\In.cs" />
     <Compile Include="Extensions\RandomizeExtensions\RandomizerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
