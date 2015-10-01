@@ -41,5 +41,19 @@ namespace Hanssens.Net.Tests.CryptographyTests
             decoded.Should().NotBe(encoded);
             decoded.Should().Be(original);
         }
+
+        [Test]
+        public void Encode_Base64_Should_Throw_Exception_With_NullOrEmpty_Parameter()
+        {
+            var nullparameter = "";
+            Assert.Throws<ArgumentNullException>(() => { Encode.Base64Encode(nullparameter); });
+        }
+
+        [Test]
+        public void Decode_Base64_Should_Throw_Exception_With_NullOrEmpty_Parameter()
+        {
+            var nullparameter = "";
+            Assert.Throws<ArgumentNullException>(() => { Encode.Base64Decode(nullparameter); });
+        }
     }
 }
