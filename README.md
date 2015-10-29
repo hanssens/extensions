@@ -12,4 +12,3 @@ Simply install the package through NuGet:
 
     Install-Package Hanssens.Net.Extensions
 
-TODO: Really edit readme file...
