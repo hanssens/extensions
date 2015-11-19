@@ -22,39 +22,42 @@ namespace Hanssens.Net.IO
 		/// </summary>
 		/// <param name="requestUri">The full request URI / endpoint to call.</param>
 		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
+		/// <param name="headers">[Optional] Provide custom headers that will be appended to the available header collection</param>
 		public static JsonResponse Delete(string requestUri, object args = null, Dictionary<string , string> headers = null){
 			var response = _Execute (requestUri, "DELETE", args, headers);
 			return response;
 		}
 
-		/// <summary>
-		/// Executes a JSON webrequest, using GET, and returns the raw JSON response as string.
-		/// </summary>
-		/// <param name="requestUri">The full request URI / endpoint to call.</param>
-		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Get(string requestUri, Dictionary<string, string> headers = null)
+        /// <summary>
+        /// Executes a JSON webrequest, using GET, and returns the raw JSON response as string.
+        /// </summary>
+        /// <param name="requestUri">The full request URI / endpoint to call.</param>
+        /// <param name="headers">[Optional] Provide custom headers that will be appended to the available header collection</param>
+        public static JsonResponse Get(string requestUri, Dictionary<string, string> headers = null)
         {
 			var response = _Execute (requestUri, "GET", args: null, headers: headers);
 			return response;
 		}
 
-		/// <summary>
-		/// Executes a JSON webrequest, using POST, and returns the raw JSON response as string.
-		/// </summary>
-		/// <param name="requestUri">The full request URI / endpoint to call.</param>
-		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Post(string requestUri, object args = null, Dictionary<string, string> headers = null)
+        /// <summary>
+        /// Executes a JSON webrequest, using POST, and returns the raw JSON response as string.
+        /// </summary>
+        /// <param name="requestUri">The full request URI / endpoint to call.</param>
+        /// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
+        /// <param name="headers">[Optional] Provide custom headers that will be appended to the available header collection</param>
+        public static JsonResponse Post(string requestUri, object args = null, Dictionary<string, string> headers = null)
         {
 			var response = _Execute (requestUri, "POST", args, headers);
 			return response;
 		}
 
-		/// <summary>
-		/// Executes a JSON webrequest, using PUT, and returns the raw JSON response as string.
-		/// </summary>
-		/// <param name="requestUri">The full request URI / endpoint to call.</param>
-		/// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
-		public static JsonResponse Put(string requestUri, object args = null, Dictionary<string, string> headers = null)
+        /// <summary>
+        /// Executes a JSON webrequest, using PUT, and returns the raw JSON response as string.
+        /// </summary>
+        /// <param name="requestUri">The full request URI / endpoint to call.</param>
+        /// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
+        /// <param name="headers">[Optional] Provide custom headers that will be appended to the available header collection</param>
+        public static JsonResponse Put(string requestUri, object args = null, Dictionary<string, string> headers = null)
         {
 			var response = _Execute (requestUri, "PUT", args, headers);
 			return response;
@@ -90,17 +93,18 @@ namespace Hanssens.Net.IO
 			// Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
 			request.ContentType = "application/json; charset=utf-8";
 
-            // append headers, if provided
-		    if (headers != null && headers.Any())
-		    {
-                request.Headers = new WebHeaderCollection();
+            if (headers != null && headers.Any())
+            {
+                // if provided, append the custom headers to the header collection
+                // note that replacing them, for examply by initializing a new WebHeaderCollection,
+                // will kill all previously set headers (see also https://github.com/hanssens/extensions/issues/19)
                 foreach (var h in headers)
                     request.Headers.Add(h.Key, h.Value);
             }
 
-			// determine if there are any arguments provided, which needs to be serialized to json and
-			// embedded into the request body, before we actually start asking for a response
-			if (args != null) {
+            // determine if there are any arguments provided, which needs to be serialized to json and
+            // embedded into the request body, before we actually start asking for a response
+            if (args != null) {
 
 				// serialize the arguments to json
 				var jsonSerializedArguments = JsonConvert.SerializeObject(args);
