@@ -38,6 +38,9 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = 8c4dd67b-263c-479f-a135-8559c4528caa
+	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Hanssens.Net\Hanssens.Net.csproj
 	EndGlobalSection
