@@ -30,10 +30,20 @@ namespace Hanssens.Net.IO
 		public bool Success { get; set; }
 
 		/// <summary>
-		/// The raw server response as value.
+		/// The raw server response, when the operation is successfully executed.
 		/// </summary>
 		/// <value>The value.</value>
 		public string Value { get; set; }
+
+		/// <summary>
+		/// JSON serialized representation of the actual request, incl. headers, that is sent to the remote service.
+		/// </summary>
+		public string RawRequest { get; set; }
+
+		/// <summary>
+		/// JSON serialized representation of the actual response, incl. headers, that is received to the remote service.
+		/// </summary>
+		public string RawResponse { get; set; }
 	}
 }
 

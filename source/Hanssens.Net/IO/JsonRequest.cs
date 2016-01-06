@@ -124,6 +124,10 @@ namespace Hanssens.Net.IO
 
 			var returnValue = new JsonResponse ();
 
+			// before the actual call is made to the remote server,
+			// make sure we persist the request that we're sending
+			returnValue.RawRequest = JsonConvert.SerializeObject(request, Formatting.Indented);
+
 			// initialize a stopwatch, to start counting the duration
 			var stopwatch = Stopwatch.StartNew ();
 
@@ -135,12 +139,19 @@ namespace Hanssens.Net.IO
 						// set the 'value'
 						returnValue.Value = reader.ReadToEnd();
 
+						// persist the success response from the remote service
+						returnValue.RawResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
+
 						// indicate that the operation was a success
 						returnValue.Success = true;
 					}
 				}
 			} catch(WebException ex) {
 				returnValue.ErrorMessage = "WebException: " + ex.Message;
+
+				// although the call wasn't a success, the remote service still returned a response
+				returnValue.RawResponse = JsonConvert.SerializeObject(ex.Response, Formatting.Indented);
+
 			} catch (Exception ex) {
 				returnValue.ErrorMessage = ex.Message;
 			} finally {
