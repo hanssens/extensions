@@ -141,6 +141,7 @@ namespace Hanssens.Net.IO
 
 						// persist the success response from the remote service
 						returnValue.RawResponse = JsonConvert.SerializeObject(response, Formatting.Indented);
+						returnValue.StatusCode = response.StatusCode;
 
 						// indicate that the operation was a success
 						returnValue.Success = true;
@@ -151,6 +152,7 @@ namespace Hanssens.Net.IO
 
 				// although the call wasn't a success, the remote service still returned a response
 				returnValue.RawResponse = JsonConvert.SerializeObject(ex.Response, Formatting.Indented);
+				returnValue.StatusCode = ((HttpWebResponse)ex.Response).StatusCode;
 
 			} catch (Exception ex) {
 				returnValue.ErrorMessage = ex.Message;

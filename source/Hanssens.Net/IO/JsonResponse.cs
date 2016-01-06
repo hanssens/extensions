@@ -44,6 +44,12 @@ namespace Hanssens.Net.IO
 		/// JSON serialized representation of the actual response, incl. headers, that is received to the remote service.
 		/// </summary>
 		public string RawResponse { get; set; }
+
+		/// <summary>
+		/// HTTP status code, as returned by the remote service.
+		/// </summary>
+		/// <value>The (http) status code.</value>
+		public System.Net.HttpStatusCode StatusCode { get; set; }
 	}
 }
 
