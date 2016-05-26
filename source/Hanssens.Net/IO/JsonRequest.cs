@@ -5,7 +5,6 @@ using System.IO;
 using Newtonsoft.Json;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
 
 namespace Hanssens.Net.IO
 {
@@ -139,10 +138,6 @@ namespace Hanssens.Net.IO
 
             try
             {
-                using (var client = new HttpClient())
-                {
-
-                }
                 using (var response = (HttpWebResponse) request.GetResponse())
                 {
                     using (var reader = new StreamReader(response.GetResponseStream()))
@@ -155,7 +150,7 @@ namespace Hanssens.Net.IO
                         returnValue.StatusCode = response.StatusCode;
 
                         // indicate that the operation was a success
-                        returnValue.Success = true;
+                        returnValue.Success = IsSuccessStatusCode(response.StatusCode);
                     }
                 }
             }
@@ -181,6 +176,17 @@ namespace Hanssens.Net.IO
             }
 
             return returnValue;
+        }
+
+        /// <summary>
+        /// Implementation of HttpClient's HttpResponseMessage 'IsSuccessStatusCode'.
+        /// </summary>
+        /// <returns>
+        /// Determines if the provided http status code is in the 2xx range.
+        /// </returns>
+        internal static bool IsSuccessStatusCode(HttpStatusCode statusCode)
+        {
+            return ((int)statusCode >= 200) && ((int)statusCode <= 299);
         }
 
     }
