@@ -156,6 +156,18 @@ namespace Hanssens.Net.IO
             }
             catch (WebException ex)
             {
+                if (ex.Response != null)
+                {
+                    // extract the error message, from the response's body
+                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    {
+                        using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                        {
+                            returnValue.Value = reader.ReadToEnd();
+                        }
+                    }
+                }
+
                 returnValue.Exception = ex;
                 returnValue.ErrorMessage = ex.Message;
 
