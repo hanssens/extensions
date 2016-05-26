@@ -18,10 +18,15 @@ namespace Hanssens.Net.IO
 		public long Duration { get; set; }
 
 		/// <summary>
-		/// In case of a (server) exception, the server response will be contained here.
+		/// In case of a (server) error, the top level server message will be contained here.
 		/// </summary>
 		/// <value>The error message.</value>
 		public string ErrorMessage { get; set; }
+
+        /// <summary>
+        /// In case of a (server) error, the catched exception will be contained here.
+        /// </summary>
+        public Exception Exception { get; set; }
 
 		/// <summary>
 		/// Indicates if the actual web request succeeded, or not.
