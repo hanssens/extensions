@@ -156,10 +156,16 @@ namespace Hanssens.Net.IO
             }
             catch (WebException ex)
             {
+                returnValue.Exception = ex;
+                returnValue.ErrorMessage = ex.Message;
+                returnValue.StatusCode = ((HttpWebResponse)ex.Response).StatusCode;
+
                 if (ex.Response != null)
                 {
+                    returnValue.RawResponse = JsonConvert.SerializeObject(ex.Response, Formatting.Indented);
+
                     // extract the error message, from the response's body
-                    using (var errorResponse = (HttpWebResponse)ex.Response)
+                    using (var errorResponse = (HttpWebResponse) ex.Response)
                     {
                         using (var reader = new StreamReader(errorResponse.GetResponseStream()))
                         {
@@ -167,13 +173,12 @@ namespace Hanssens.Net.IO
                         }
                     }
                 }
-
-                returnValue.Exception = ex;
-                returnValue.ErrorMessage = ex.Message;
-
-                // although the call wasn't a success, the remote service still returned a response
-                returnValue.RawResponse = JsonConvert.SerializeObject(ex.Response, Formatting.Indented);
-                returnValue.StatusCode = ((HttpWebResponse) ex.Response).StatusCode;
+                else
+                {
+                    // required as seperate line if ex.Response is not null, and the above if function will dispose it
+                    returnValue.RawResponse = JsonConvert.SerializeObject(ex.Response, Formatting.Indented);
+                }
+                
             }
             catch (Exception ex)
             {
