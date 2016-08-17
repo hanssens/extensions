@@ -52,6 +52,18 @@ namespace Hanssens.Net.IO
 		}
 
         /// <summary>
+        /// Executes a JSON webrequest, using PATCH, and returns the raw JSON response as string.
+        /// </summary>
+        /// <param name="requestUri">The full request URI / endpoint to call.</param>
+        /// <param name="args">[Optional]Any given object which will be serialized to JSON and included as message body</param>
+        /// <param name="headers">[Optional] Provide custom headers that will be appended to the available header collection</param>
+        public static JsonResponse Patch(string requestUri, object args = null, Dictionary<string, string> headers = null)
+        {
+            var response = _Execute(requestUri, "PATCH", args, headers);
+            return response;
+        }
+
+        /// <summary>
         /// Executes a JSON webrequest, using PUT, and returns the raw JSON response as string.
         /// </summary>
         /// <param name="requestUri">The full request URI / endpoint to call.</param>
