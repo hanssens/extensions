@@ -52,7 +52,22 @@ namespace Hanssens.Net.Tests.IO
 		public void JsonRequest_Put_Should_Return_Json_String(){
 			Assert.Inconclusive ("TODO: Implement test for JsonRequest.Put");
 		}
-			
-	}
+
+        [Test]
+        public void JsonRequest_Patch_Should_Return_Json_String()
+        {
+            // arrange
+            var endpoint = @"http://jsonplaceholder.typicode.com/posts/1";
+
+            // act
+            var target = JsonRequest.Patch(endpoint);
+
+            // assert
+            target.Should().NotBeNull();
+            target.Success.Should().BeTrue(because: target.ErrorMessage);
+            target.Value.Should().NotBeNullOrEmpty();
+            target.ErrorMessage.Should().BeNull();
+        }
+    }
 }
 
