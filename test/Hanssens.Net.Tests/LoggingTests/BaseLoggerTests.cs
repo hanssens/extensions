@@ -4,9 +4,9 @@ using Hanssens.Net.Logging;
 using FluentAssertions;
 using System.Linq;
 
-namespace Hanssens.Net.Tests
+namespace Hanssens.Net.Tests.LoggingTests
 {
-	[TestFixture ()]
+	[TestFixture(Category = "Logging")]
 	public class BaseLoggerTests
 	{
 		[Test ()]

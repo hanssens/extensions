@@ -22,13 +22,20 @@ namespace Hanssens.Net.Logging
 		public override void Flush()
 		{
 			var output = new StringBuilder();
-			foreach (var log in Lines)
-				output.Append(log.ToString() + "\r\n");
+		    const string eol = "\r\n";
+		    foreach (var log in Lines)
+		    {
+                output.Append(log);
+		        output.Append(eol);
+		    }
 
-			using (var writer = new StreamWriter(FileOutputPath, true))
-			{
-				writer.Write(output.ToString());
-			}
+		    using (var logFileStream = File.Create(FileOutputPath))
+		    {
+                using (var writer = new StreamWriter(logFileStream))
+                {
+                    writer.Write(output.ToString());
+                }
+            }
 
 			Clear ();
 		}

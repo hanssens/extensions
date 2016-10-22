@@ -10,13 +10,13 @@ namespace Hanssens.Net.Logging
 
 		public LogLine()
 		{
-			this.LogDate = DateTime.Now;
-			this.LogType = LogTypes.Info;
+			LogDate = DateTime.Now;
+			LogType = LogTypes.Info;
 		}
 
 		public override string ToString()
 		{
-			return String.Format("{0} [{1}] {2}", LogDate, LogType, Message);
+			return string.Format("{0} [{1}] {2}", LogDate, LogType, Message);
 		}
 	}
 }
