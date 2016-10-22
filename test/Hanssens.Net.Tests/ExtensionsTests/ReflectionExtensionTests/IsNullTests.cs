@@ -8,7 +8,7 @@ using NUnit.Framework;
 
 namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
 {
-    [TestFixture, Category("ReflectionExtensions/IsNull")]
+    [TestFixture, Category("Reflection/IsNull")]
     public class IsNullTests
     {
         [Test]
@@ -18,7 +18,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             object obj = null;
             
             // act
-            var target = ReflectionExtensions.IsNull(obj);
+            var target = Reflection.IsNull(obj);
 
             // assert
             target.Should().BeTrue();
@@ -31,7 +31,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             int? obj = null;
 
             // act
-            var target = ReflectionExtensions.IsNull(obj);
+            var target = Reflection.IsNull(obj);
 
             // assert
             target.Should().BeTrue();
@@ -44,7 +44,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             var obj = new DateTime();
 
             // act
-            var target = ReflectionExtensions.IsNull(obj);
+            var target = Reflection.IsNull(obj);
 
             // assert
             target.Should().BeFalse();
