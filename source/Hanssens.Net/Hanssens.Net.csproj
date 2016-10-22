@@ -57,7 +57,6 @@
     <Compile Include="Logging\Loggers\BaseLogger.cs" />
     <Compile Include="IO\CsvExport.cs" />
     <Compile Include="Extensions\StringExtensions\ToSeoFriendlyString.cs" />
-    <Compile Include="Calculations\UnitConverter.cs" />
     <Compile Include="Cryptography\PasswordHash.cs" />
     <Compile Include="Reflection\Extract.cs" />
     <Compile Include="IO\JsonRequest.cs" />
