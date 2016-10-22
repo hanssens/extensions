@@ -13,19 +13,19 @@ namespace Hanssens.Net.Tests
         [Test]
         public void Randomizer_Should_Initialize()
         {
-            var target = new Hanssens.Net.Extensions.Randomizer();
+            var target = new Randomizer();
             Assert.IsNotNull(target);
 			target.Should ().NotBeNull ();
-			target.Should ().BeOfType<Hanssens.Net.Extensions.Randomizer> ();
+			target.Should ().BeOfType<Randomizer> ();
         }
 
         [Test]
         public void Randomizer_Should_Initialize_And_Dispose()
         {
-            using (var target = new Hanssens.Net.Extensions.Randomizer())
+            using (var target = new Randomizer())
             {
 				target.Should ().NotBeNull ();
-				target.Should ().BeOfType<Hanssens.Net.Extensions.Randomizer> ();
+				target.Should ().BeOfType<Randomizer> ();
             }
         }
 
@@ -36,7 +36,7 @@ namespace Hanssens.Net.Tests
             for (int i = 0; i < 99; i++)
                 values.Add("UserNo" + i);
 
-            using (var randomizer = new Hanssens.Net.Extensions.Randomizer())
+            using (var randomizer = new Randomizer())
             {
                 var firstValue = randomizer.Random(values);
                 var secondValue = randomizer.Random(values);
@@ -59,11 +59,11 @@ namespace Hanssens.Net.Tests
             string firstValue = string.Empty, secondValue = string.Empty;
 
 			// Act - initialize two Randomizer instances and fetch a random value
-            using (var randomizer = new Hanssens.Net.Extensions.Randomizer()) {
+            using (var randomizer = new Randomizer()) {
                 firstValue = randomizer.Random(values);
             }
 
-            using (var randomizer = new Hanssens.Net.Extensions.Randomizer()) {
+            using (var randomizer = new Randomizer()) {
                 secondValue = randomizer.Random(values);
             }
 

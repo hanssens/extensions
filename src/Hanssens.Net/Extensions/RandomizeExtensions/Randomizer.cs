@@ -64,7 +64,7 @@ namespace Hanssens.Net.Extensions
         public int Random()
         {
             var bytes = new byte[sizeof(Int32)];
-            var generator = new RNGCryptoServiceProvider();
+            var generator = RandomNumberGenerator.Create();
             generator.GetBytes(bytes);
             return BitConverter.ToInt32(bytes, 0);
         }
