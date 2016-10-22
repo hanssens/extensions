@@ -60,7 +60,6 @@
     <Compile Include="Entities\CustomerWithoutIdAndName.cs" />
     <Compile Include="IO\JsonRequestTests.cs" />
     <Compile Include="JsonExtensionTests\IsValidJsonTests.cs" />
-    <Compile Include="IEnumerableExtensionTests\IsNullOrEmptyTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

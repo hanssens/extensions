@@ -60,7 +60,6 @@
     <Compile Include="Reflection\Extract.cs" />
     <Compile Include="IO\JsonRequest.cs" />
     <Compile Include="Extensions\JsonExtensions\JsonExtensions.cs" />
-    <Compile Include="Extensions\IEnumerableExtensions\IEnumerableExtensions.cs" />
     <Compile Include="IO\JsonResponse.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
