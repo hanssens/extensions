@@ -3,7 +3,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
-using System.Data.SqlTypes;
+using Hanssens.Net.Extensions;
 
 namespace Hanssens.Net.IO
 {
@@ -35,8 +35,9 @@ namespace Hanssens.Net.IO
 
 			var seperator = seperatorChar.ToString();
 
+
 			//Get properties using reflection.
-			IList<PropertyInfo> propertyInfos = typeof(T).GetProperties();
+			var propertyInfos = typeof(T).GetRuntimeProperties();
 
 			if (includeHeaderLine)
 			{
@@ -84,15 +85,15 @@ namespace Hanssens.Net.IO
 		/// <param name="value"></param>
 		private string MakeValueCsvFriendly(object value)
 		{
-			if (value == null) return string.Empty;
-			if (value is INullable && ((INullable)value).IsNull) return string.Empty;
+		    if (Reflection.IsNull(value)) return string.Empty;
 
-			if (value is DateTime)
+            if (value is DateTime)
 			{
 				if (((DateTime)value).TimeOfDay.TotalSeconds == 0)
 					return ((DateTime)value).ToString("yyyy-MM-dd");
 				return ((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss");
 			}
+
 			string output = value.ToString();
 
 			if (output.Contains(",") || output.Contains("\""))
