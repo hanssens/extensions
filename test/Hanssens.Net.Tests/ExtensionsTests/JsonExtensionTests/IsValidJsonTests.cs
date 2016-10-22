@@ -5,7 +5,7 @@ using Hanssens.Net.Extensions;
 
 namespace Hanssens.Net.Tests
 {
-	[TestFixture]
+	[TestFixture(Category = "JsonExtensions")]
 	public class IsValidJsonTests
 	{
 
