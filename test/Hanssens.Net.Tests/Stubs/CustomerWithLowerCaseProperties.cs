@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hanssens.Net.Tests
+namespace Hanssens.Net.Tests.Stubs
 {
 	public class CustomerWithLowerCaseProperties
 	{

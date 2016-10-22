@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Hanssens.Net.Tests.Entities
+namespace Hanssens.Net.Tests.Stubs
 {
 	public class CustomerWithAdditionalProperties
 	{

@@ -49,11 +49,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LoggingTests\BaseLoggerTests.cs" />
-    <Compile Include="ReflectionTests\ExtractPropertyValueTests.cs" />
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\CustomerWithAdditionalProperties.cs" />
-    <Compile Include="Entities\CustomerWithLowerCaseProperties.cs" />
-    <Compile Include="Entities\CustomerWithoutIdAndName.cs" />
     <Compile Include="IO\JsonRequestTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
