@@ -48,21 +48,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="LinqExtensionTests\InTests.cs" />
-    <Compile Include="RandomizeExtensionTests\RandomizerTests.cs" />
-    <Compile Include="StringExtensionTests\LongestWordTests.cs" />
-    <Compile Include="LoggingTests\BaseLoggerTests.cs" />
-    <Compile Include="StringExtensionTests\ToSeoFriendlyStringTests.cs" />
-    <Compile Include="CalculationsTests\UnitConverterTests.cs" />
-    <Compile Include="CryptographyTests\PasswordHashTests.cs" />
-    <Compile Include="ReflectionTests\ExtractPropertyValueTests.cs" />
-    <Compile Include="Entities\Customer.cs" />
-    <Compile Include="Entities\CustomerWithAdditionalProperties.cs" />
-    <Compile Include="Entities\CustomerWithLowerCaseProperties.cs" />
-    <Compile Include="Entities\CustomerWithoutIdAndName.cs" />
     <Compile Include="IO\JsonRequestTests.cs" />
-    <Compile Include="JsonExtensionTests\IsValidJsonTests.cs" />
-    <Compile Include="IEnumerableExtensionTests\IsNullOrEmptyTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
