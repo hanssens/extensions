@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Hanssens.Net.Extensions
 {
-    public static class IEnumerableExtensions
+    public static partial class IEnumerableExtensions
     {
         /// <summary>
         /// Indicates whether the specified collection is null or contains no elements.
