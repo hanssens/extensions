@@ -6,7 +6,6 @@
     "FluentAssertions": "4.14.0",
     "Hanssens.Net": "2.0.0-*",
     "Microsoft.Extensions.DependencyInjection": "1.0.0",
-    "MyTested.AspNetCore.Mvc": "1.0.0",
     "NETStandard.Library": "1.6.0",
     "NUnit": "3.4.1"
   },
