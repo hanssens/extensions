@@ -2530,7 +2530,7 @@
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         }
       },
-      "Hanssens.Net/2.0.0": {
+      "Hanssens.Net/2.0.0-alpha": {
         "type": "project",
         "framework": ".NETStandard,Version=v1.6",
         "dependencies": {
@@ -7567,7 +7567,7 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
-    "Hanssens.Net/2.0.0": {
+    "Hanssens.Net/2.0.0-alpha": {
       "type": "project",
       "path": "../../src/Hanssens.Net/project.json",
       "msbuildProject": "../../src/Hanssens.Net/Hanssens.Net.xproj"

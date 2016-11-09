@@ -1,5 +1,13 @@
 {
-  "version": "2.0.0-*",
+  "authors": [ "Juliën Hanssens" ],
+  "description": "Helpers and extensions for .NET",
+  "packOptions": {
+    "licenseUrl": "https://raw.githubusercontent.com/hanssens/extensions/master/LICENSE.md",
+    "projectUrl": "https://github.com/hanssens/extensions",
+    "requireLicenseAcceptance": false
+  },
+  "title": "Hanssens.Net.Extensions",
+  "version": "2.0.0-alpha3",
 
   "dependencies": {
     "NETStandard.Library": "1.6.0",
