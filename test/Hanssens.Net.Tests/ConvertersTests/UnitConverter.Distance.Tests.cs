@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Hanssens.Net.Calculations;
+using Hanssens.Net.Converters;
 using NUnit.Framework;
 using FluentAssertions;
 
-namespace Hanssens.Net.Tests.CalculationsTests
+namespace Hanssens.Net.Tests.ConvertersTests
 {
-    [TestFixture(Category = "Calculations")]
-    public class UnitConverterTests
+    [TestFixture(Category = "Converters/UnitConverts-Distance")]
+    public partial class UnitConverterTests
     {
         [Test]
         public void KilometersToMiles_Should_Provide_Exact_Result()
@@ -38,5 +38,6 @@ namespace Hanssens.Net.Tests.CalculationsTests
             // assert
             target.Should().Be(expected);
         }
+
     }
 }

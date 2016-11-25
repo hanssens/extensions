@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Hanssens.Net.Calculations
+namespace Hanssens.Net.Converters
 {
-    /// <summary>
-    /// The UnitConverter class provides static helpers for accurately converting units.
-    /// </summary>
-    public static class UnitConverter
+    public static partial class UnitConverter
     {
         /// <summary>
         /// 1 kilometer = 0.621371192 miles
