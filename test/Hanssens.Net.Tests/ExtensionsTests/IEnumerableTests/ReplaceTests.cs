@@ -79,6 +79,29 @@ namespace Hanssens.Net.Tests
             collection.Count(c => c == "w00t").Should().Be(originalWordCount, because: "same amount of items should be replaced");
         }
 
+        [Test]
+        public void Replace_Should_Replace_Nothing_When_No_Matches_Are_Found()
+        {
+            // arrange
+            var collection = new List<string>()
+            {
+                "a",
+                "b",
+                "c",
+                "d",
+                "e"
+            };
 
+            var originalCollectionCount = collection.Count;
+            var nonExistingValue = "foo";
+            var notExpectedValue = "this-should-not-occur";
+
+            // act
+            collection.Replace(nonExistingValue, notExpectedValue);
+
+            // assert
+            collection.Should().NotContain(notExpectedValue);
+            collection.Should().BeSameAs(collection, because: "collection should be unmodified");
+        }
     }
 }
