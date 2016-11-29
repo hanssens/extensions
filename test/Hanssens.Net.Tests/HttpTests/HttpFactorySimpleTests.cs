@@ -28,7 +28,8 @@ namespace Hanssens.Net.Tests.HttpTests
             
             // assert
             target.Should().NotBeNull();
-            target.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            //target.StatusCode.Should().Be(HttpStatusCode.NoContent);
+            target.StatusCode.Should().Be(HttpStatusCode.OK);
             target.IsSuccessStatusCode.Should().BeTrue();
         }
         
