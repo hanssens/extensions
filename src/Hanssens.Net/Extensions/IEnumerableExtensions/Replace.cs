@@ -23,8 +23,12 @@ namespace Hanssens.Net.Extensions
             if (source == null) throw new ArgumentNullException(nameof(source));
 
             var index = source.IndexOf(oldValue);
-            if (index >= 0)
+            while (index >= 0)
+            {
                 source[index] = newValue;
+                index = source.IndexOf(oldValue);
+            }
+
 
             return index;
         }

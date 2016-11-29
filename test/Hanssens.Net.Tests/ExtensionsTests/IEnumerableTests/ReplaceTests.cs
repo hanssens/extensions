@@ -76,7 +76,7 @@ namespace Hanssens.Net.Tests
             collection.Should().NotContain("foo");
             collection.Should().Contain("haz");
             collection.Count.Should().Be(originalCollectionCount, because: "length of the collection should remain the same");
-            collection.Count(c => c == "haz").Should().Be(originalWordCount, because: "same amount of items should be replaced");
+            collection.Count(c => c == "w00t").Should().Be(originalWordCount, because: "same amount of items should be replaced");
         }
 
 
