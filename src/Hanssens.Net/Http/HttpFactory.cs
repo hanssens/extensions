@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Hanssens.Net.Http
 {
@@ -55,19 +58,9 @@ namespace Hanssens.Net.Http
             return DeleteAsync(requestUri).Result;
         }
 
-        public async Task<HttpResponseMessage> DeleteAsync(string requestUri)
-        {
-            return await http.DeleteAsync(requestUri);
-        }
-
         public HttpResponseMessage Get(string requestUri)
         {
             return GetAsync(requestUri).Result;
-        }
-
-        public async Task<HttpResponseMessage> GetAsync(string requestUri)
-        {
-            return await http.GetAsync(requestUri);
         }
 
         public HttpResponseMessage Post<T>(string requestUri, T body)
@@ -75,25 +68,93 @@ namespace Hanssens.Net.Http
             return PostAsync(requestUri, body).Result;
         }
 
-        public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body)
-        {
-            // TODO: determine type of body, to determine the correct content serializer
-            // for now, default to StringContent
-            var content = new StringContent(body.ToString());
-            return await http.PostAsync(requestUri, content);
-        }
-
         public HttpResponseMessage Put<T>(string requestUri, T body)
         {
             return PutAsync(requestUri, body).Result;
         }
 
+        public async Task<HttpResponseMessage> DeleteAsync(string requestUri)
+        {
+            return await Execute(HttpMethod.Delete, requestUri, "");
+        }
+
+        public async Task<HttpResponseMessage> GetAsync(string requestUri)
+        {
+            return await Execute(HttpMethod.Get, requestUri, "");
+        }
+
+        public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body)
+        {
+            return await Execute(HttpMethod.Post, requestUri, body);
+        }
+
         public async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body)
         {
-            // TODO: determine type of body, to determine the correct content serializer
-            // for now, default to StringContent
-            var content = new StringContent(body.ToString());
-            return await http.PutAsync(requestUri, content);
+            return await Execute(HttpMethod.Put, requestUri, body);
+        }
+
+        private async Task<HttpResponseMessage> Execute<T>(HttpMethod httpMethod, string requestUri, T body)
+        {
+            var request = new HttpRequestMessage(httpMethod, requestUri);
+
+            var contentLength = 0;
+
+            if (body != null)
+            {
+                // serialize the request body to json
+                var jsonSerializedArguments = JsonConvert.SerializeObject(body);
+
+                // make sure the body has an actual value (and isn't just null or empty)
+                var token = JToken.Parse(jsonSerializedArguments);
+                if (token.HasValues)
+                {
+                    var contentLengthBytes = System.Text.Encoding.UTF8.GetBytes(jsonSerializedArguments);
+                    contentLength = contentLengthBytes.Length;
+
+                    // TODO: determine type of body, to determine the correct content serializer
+                    request.Content = new StringContent(jsonSerializedArguments);
+                }
+                else
+                {
+                    // in case the body is empty, also set the content to empty
+                    // this is required for content headers, which are set later on
+                    request.Content = new StringContent("");
+                }
+            }
+
+            try
+            {
+                // some APIs want you to supply the appropriate "Accept" header
+                // in the request to get the wanted response type.
+                // For example if an API can return data in XML and JSON and you
+                // want the JSON result, you would need to set the HttpWebRequest.Accept
+                // property to "application/json". See also: http://stackoverflow.com/a/5197548/1039247
+                // Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
+                //request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
+                request.Headers.Add("Accept", "application/json");
+
+                // by default, the content header 'content-type' may already be provided
+                // in this case, reset it so we can make sure the appropriate header is set
+                // incl. the charset. Having charset utf8 is OUR convention in this library.
+                request.Content.Headers.Remove("Content-Type");
+                request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
+
+                // define the content length, as per RFC2616 10.4.12:
+                //   The server refuses to accept the request without a defined Content-
+                //   Length. The client MAY repeat the request if it adds a valid
+                //   Content-Length header field containing the length of the message-body
+                //   in the request message.
+                // now, by default we're setting it to '0' and later on, only if there are indeed
+                // arguments (e.g. a message body) provided, the actual size will be calculated
+                request.Content.Headers.Add("Content-Length", contentLength.ToString());
+
+                // execute the request
+                return await http.SendAsync(request);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public void Dispose()
