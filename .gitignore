@@ -96,6 +96,9 @@ publish/
 # NuGet Packages Directory
 packages/
 
+# Allow NuGet.exe (do not ignore)
+!NuGet.exe
+
 # Windows Azure Build Output
 csx
 *.build.csdef
@@ -146,4 +149,24 @@ $RECYCLE.BIN/
 # Mac crap
 .DS_Store
 
+# Mono / Xamarin Studio
 *.userprefs
+
+# Package Manager excludes, such as NPM and Bower
+node_modules
+dist
+.tmp
+.sass-cache
+bower_components
+
+# VS2015 specifics
+.vs/
+
+# dotnet-core specifics
+project.lock.json
+
+# JetBrains
+.idea*
+
+# NUnit test results
+TestResult.xml

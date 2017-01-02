@@ -1,0 +1,29 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "dotnet-test-nunit": "3.4.0-beta-2",
+    "FluentAssertions": "4.14.0",
+    "Hanssens.Net": "2.0.0-*",
+    "Microsoft.Extensions.DependencyInjection": "1.0.0",
+    "NETStandard.Library": "1.6.0",
+    "NUnit": "3.4.1"
+  },
+
+  "testRunner": "nunit",
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": [
+        "portable-net45+win8"
+      ],
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.0.1"
+        }
+      }
+    }
+
+  }
+}
