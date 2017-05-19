@@ -1,17 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
 using Hanssens.Net.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
 {
-    [TestFixture, Category("Reflection/IsNull")]
+    //[Category("Reflection/IsNull")]
     public class IsNullTests
     {
-        [Test]
+        [Fact]
         public void IsNullShouldValidateNullObject()
         {
             // arrange
@@ -24,7 +21,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             target.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void IsNullShouldValidateNullableReferenceType()
         {
             // arrange
@@ -37,7 +34,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             target.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void IsNullShouldInvalidateNonNullableReferenceType()
         {
             // arrange

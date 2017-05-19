@@ -1,13 +1,13 @@
 ﻿using Hanssens.Net.Converters;
-using NUnit.Framework;
 using FluentAssertions;
+using Xunit;
 
 namespace Hanssens.Net.Tests.ConvertersTests
 {
-    [TestFixture(Category = "Converters/UnitConverts-Distance")]
+    //[TestFixture(Category = "Converters/UnitConverts-Distance")]
     public partial class UnitConverterTests
     {
-        [Test]
+        [Fact]
         public void KilometersToMiles_Should_Provide_Exact_Result()
         {
             // arrange
@@ -21,7 +21,7 @@ namespace Hanssens.Net.Tests.ConvertersTests
             target.Should().Be(expected);
         }
 
-        [Test]
+        [Fact]
         public void MilesToKilometers_Should_Provide_Exact_Result()
         {
             // arrange

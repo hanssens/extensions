@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using FluentAssertions;
-using NUnit.Framework;
 using Hanssens.Net.Extensions;
+using Xunit;
 
 namespace Hanssens.Net.Tests.ExtensionsTests
 {
-    [TestFixture, Category("IEnumerableExtensions/IsNullOrEmpty")]
+    //[TestFixture, Category("IEnumerableExtensions/IsNullOrEmpty")]
     public class IsNullOrEmptyTests
     {
-        [Test]
+        [Fact]
         public void Should_Return_False_If_Collection_Has_A_Single_Element()
         {
             // arrange - create array with a single item
@@ -24,7 +23,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests
             target.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void Should_Return_False_If_Collection_Has_Multiple_Elements()
         {
             // arrange - create strong typed collection, with multiple items
@@ -37,7 +36,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests
             target.Should().BeFalse();
         }
 
-        [Test]
+        [Fact]
         public void Should_Return_True_If_Collection_IsNull()
         {
             // arrange - create null collection
@@ -50,7 +49,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests
             target.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void Should_Return_True_If_Collection_IsEmpty()
         {
             // arrange - create empty collection

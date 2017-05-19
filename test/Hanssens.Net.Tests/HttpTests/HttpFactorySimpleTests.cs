@@ -1,23 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
+﻿using System.Net;
 using Hanssens.Net.Http;
-using NUnit.Framework;
 using FluentAssertions;
+using Xunit;
 
 namespace Hanssens.Net.Tests.HttpTests
 {
-    [TestFixture]
     public class HttpFactorySimpleTests
     {
 
         // TODO: The tests below shouldn't call an external service, obviously, but should
         // be refactored to rely on a more appropriate 'embedded' api.
 
-        [Test]
+        [Fact]
         public void HttpFactory_Simple_Delete_Should_Return_Json_String()
         {
             // arrange
@@ -33,7 +27,7 @@ namespace Hanssens.Net.Tests.HttpTests
             target.IsSuccessStatusCode.Should().BeTrue();
         }
         
-        [Test]
+        [Fact]
         public void HttpFactory_Simple_Get_Should_Return_Json_String()
         {
             // arrange
@@ -48,7 +42,7 @@ namespace Hanssens.Net.Tests.HttpTests
             target.IsSuccessStatusCode.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void HttpFactory_Simple_Post_Should_Return_Json_String()
         {
             // arrange
@@ -64,7 +58,7 @@ namespace Hanssens.Net.Tests.HttpTests
             target.IsSuccessStatusCode.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void HttpFactory_Simple_Put_Should_Return_Json_String()
         {
             // arrange

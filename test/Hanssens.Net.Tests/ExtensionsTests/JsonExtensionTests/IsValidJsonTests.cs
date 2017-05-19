@@ -1,15 +1,14 @@
-﻿using System;
-using FluentAssertions;
-using NUnit.Framework;
+﻿using FluentAssertions;
 using Hanssens.Net.Extensions;
+using Xunit;
 
 namespace Hanssens.Net.Tests
 {
-	[TestFixture(Category = "JsonExtensions")]
+	//[TestFixture(Category = "JsonExtensions")]
 	public class IsValidJsonTests
 	{
 
-		[Test]
+		[Fact]
 		public void IsValidJson_Should_Validate_Single_Item_As_Correct_Json(){
 			// arrange
 			var input = @"{'ip': '87.236.6.162'}";
@@ -21,7 +20,7 @@ namespace Hanssens.Net.Tests
 			target.Should ().BeTrue ();
 		}
 
-		[Test]
+		[Fact]
 		public void IsValidJson_Should_Validate_Empty_Json_Structure_As_Correct_Json(){
 			// arrange
 			var input = "[{ }]";
@@ -33,7 +32,7 @@ namespace Hanssens.Net.Tests
 			target.Should ().BeTrue ();
 		}
 
-		[Test]
+		[Fact]
 		public void IsValidJson_ShouldNot_Validate_Incorrect_Json_Format(){
 			// arrange
 			var input = @"this.is.not.json";
@@ -45,7 +44,7 @@ namespace Hanssens.Net.Tests
 			target.Should ().BeFalse ();
 		}
 
-		[Test]
+		[Fact]
 		public void IsValidJson_Should_Validate_Collection_As_Valid_Json(){
 			// arrange
 			var input = "[{ 'name': 'harry potter' }, { 'name': 'hermoine granger' }, { 'name': 'albus dumbledore' }]";
