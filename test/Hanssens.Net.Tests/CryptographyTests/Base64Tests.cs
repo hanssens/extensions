@@ -1,13 +1,12 @@
 ﻿using FluentAssertions;
 using Hanssens.Net.Cryptography;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests.CryptographyTests
 {
-    [TestFixture]
     public class Base64Tests
     {
-        [Test]
+        [Fact]
         public void Base64_Decode_Should_Decrypt_Text()
         {
             // arrange
@@ -22,7 +21,7 @@ namespace Hanssens.Net.Tests.CryptographyTests
             target.Should().Be(expectedOutput);
         }
 
-        [Test]
+        [Fact]
         public void Base64_Encode_Should_Encrypt_Text()
         {
             // arrange
@@ -37,7 +36,7 @@ namespace Hanssens.Net.Tests.CryptographyTests
             target.Should().Be(expectedOutput);
         }
 
-        [Test]
+        [Fact]
         public void Base64_Encode_Should_Be_Decodable()
         {
             // arrange
@@ -52,7 +51,7 @@ namespace Hanssens.Net.Tests.CryptographyTests
             target.Should().Be(input);
         }
 
-        [Test]
+        [Fact]
         public void Base64_Encode_Should_Have_No_Problem_With_Unicode_Characters()
         {
             // arrange

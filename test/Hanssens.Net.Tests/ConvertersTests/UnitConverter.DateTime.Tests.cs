@@ -1,14 +1,13 @@
 ﻿using System;
 using Hanssens.Net.Converters;
-using NUnit.Framework;
 using FluentAssertions;
+using Xunit;
 
 namespace Hanssens.Net.Tests.ConvertersTests
 {
-    [TestFixture(Category = "Converters/UnitConverts-DateTime")]
     public partial class UnitConverterTests
     {
-        [Test]
+        [Fact]
         public void ConvertFromUnixEpoch_Should_Have_Proper_StartDate()
         {
             // arrange
@@ -22,7 +21,7 @@ namespace Hanssens.Net.Tests.ConvertersTests
             target.Should().Be(expected);
         }
 
-        [Test]
+        [Fact]
         public void ConvertFromUnixEpoch_Should_Convert_Date_To_Epoch()
         {
             // arrange
@@ -36,7 +35,7 @@ namespace Hanssens.Net.Tests.ConvertersTests
             target.Should().Be(expected);
         }
 
-        [Test]
+        [Fact]
         public void ConvertFromUnixEpoch_Should_Convert_Historical_Date_To_Epoch()
         {
             // arrange
@@ -50,7 +49,7 @@ namespace Hanssens.Net.Tests.ConvertersTests
             target.Should().Be(expected);
         }
 
-        [Test]
+        [Fact]
         public void DateTime_ToEpoch_Should_Have_Proper_StartDate()
         {
             // arrange
@@ -64,7 +63,7 @@ namespace Hanssens.Net.Tests.ConvertersTests
             target.Should().Be(expectedEpoch);
         }
 
-        [Test]
+        [Fact]
         public void DateTime_ToEpoch_Should_Convert_Epoch_To_Date()
         {
             // arrange
@@ -78,7 +77,7 @@ namespace Hanssens.Net.Tests.ConvertersTests
             target.Should().Be(expectedEpoch);
         }
 
-        [Test]
+        [Fact]
         public void DateTime_ToEpoch_Should_Convert_Historical_Epoch_To_Date()
         {
             // arrange

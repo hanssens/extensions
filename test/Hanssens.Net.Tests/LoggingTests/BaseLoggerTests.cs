@@ -1,15 +1,13 @@
-using NUnit.Framework;
-using System;
 using Hanssens.Net.Logging;
 using FluentAssertions;
 using System.Linq;
+using Xunit;
 
 namespace Hanssens.Net.Tests.LoggingTests
 {
-	[TestFixture(Category = "Logging")]
 	public class BaseLoggerTests
 	{
-		[Test ()]
+		[Fact]
 		public void ConsoleLogger_Should_Be_OfType_ILogger ()
 		{
 			var target = new ConsoleLogger ();
@@ -18,7 +16,7 @@ namespace Hanssens.Net.Tests.LoggingTests
 			target.Should ().BeAssignableTo<BaseLogger> ();
 		}
 
-		[Test ()]
+		[Fact]
 		public void FileLogger_Should_Be_OfType_ILogger ()
 		{
 			var target = new FileLogger ("irrelevant");
@@ -27,7 +25,7 @@ namespace Hanssens.Net.Tests.LoggingTests
 			target.Should ().BeAssignableTo<BaseLogger> ();
 		}
 
-		[Test()]
+		[Fact]
 		public void BaseLogger_Should_Create_LogLine()
 		{
 			ILogger logger = new ConsoleLogger ();
@@ -40,7 +38,7 @@ namespace Hanssens.Net.Tests.LoggingTests
 			logger.Lines.First ().Message.Should ().BeEquivalentTo(line);
 		}
 
-		[Test()]
+		[Fact]
 		public void BaseLogger_Clear_Should_Erase_All_Lines()
 		{
 			ILogger logger = new ConsoleLogger ();
