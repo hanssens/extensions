@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using Hanssens.Net.Extensions;
 using Hanssens.Net.Tests.InTests;
-using NUnit.Framework;
 using FluentAssertions;
 using Hanssens.Net.Tests.Stubs;
+using Xunit;
 
 namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
 {
-    [TestFixture, Category("Reflection/ExtractPropertyValue")]
     public class ExtractPropertyValueTests
     {
-        [Test]
+        [Fact]
         public void ExtractPropertyValue_Should_Id_And_Name()
         {
             // arrange
@@ -31,7 +28,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             targetName.Should().Be(expected.Name);
         }
 
-        [Test]
+        [Fact]
         public void ExtractPropertyValue_Should_Ignore_Other_Properties()
         {
             // arrange - note that this object has additional properties, which should be ignored
@@ -45,7 +42,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             target.Should().Be(expected.Name);
         }
 
-        [Test]
+        [Fact]
         public void ExtractPropertyValue_Should_Ignore_CaseSensitivity()
         {
             // arrange - note that this object has lowercase 'id' and 'name'
@@ -59,7 +56,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             target.Should().Be(expected.name);
         }
 
-        [Test]
+        [Fact]
         public void ExtractPropertyValue_Should_ThrowException_If_Id_Or_Name_IsNot_Found()
         {
             // arrange - note that this object has neither and Id, nor a Name and will result in exception
@@ -73,7 +70,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             //Assert.Fail("Expected an exception");
         }
 
-        [Test]
+        [Fact]
         public void ExtractPropertyValue_Should_ThrowException_If_Instance_IsNull()
         {
             // arrange - note that this object has neither and Id, nor a Name and will result in exception

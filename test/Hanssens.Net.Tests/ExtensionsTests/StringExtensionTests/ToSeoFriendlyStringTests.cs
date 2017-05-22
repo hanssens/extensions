@@ -1,15 +1,14 @@
 ﻿using System;
 using FluentAssertions;
 using Hanssens.Net.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests.StringExtensionTests
 {
-    [TestFixture]
     public class ToSeoFriendlyStringTests
     {
 
-        [Test]
+        [Fact]
 		public void ToSeoFriendlyString_Should_Strip_All_NonAlphaNumeric_Characters()
         {
 			// arrange
@@ -29,11 +28,11 @@ namespace Hanssens.Net.Tests.StringExtensionTests
 
 				// iterate through the characters to prove that it's a letter, digit or seperator
 				if (!Char.IsLetterOrDigit (c))
-					Assert.Fail (String.Format ("Non-compliant character '{0}' found in pharse '{1}'", c.ToString (), target));
+				    Assert.True(false, String.Format ("Non-compliant character '{0}' found in pharse '{1}'", c.ToString (), target));
 			}
         }
 
-		[Test]
+		[Fact]
 		public void ToSeoFriendlyString_Should_Only_Return_Lowercase_Characters()
 		{
 			// arrange
@@ -53,11 +52,11 @@ namespace Hanssens.Net.Tests.StringExtensionTests
 
 				// iterate through the characters to prove that it only contains lowercase characters
 				if (!Char.IsLower(c))
-					Assert.Fail (String.Format ("Non-lowercase character '{0}' found in pharse '{1}'", c.ToString (), target));
+				    Assert.True(false, String.Format ("Non-lowercase character '{0}' found in pharse '{1}'", c.ToString (), target));
 			}
 		}
 
-		[Test]
+		[Fact]
 		public void ToSeoFriendlyString_Should_Strip_DotsAndHyphens_From_Beginning()
 		{
 			// arrange
@@ -71,7 +70,7 @@ namespace Hanssens.Net.Tests.StringExtensionTests
 			target.Should().BeEquivalentTo("this-is-a-sentence-with-dots-and-hyphens");
 		}
 
-		[Test]
+		[Fact]
 		public void ToSeoFriendlyString_Should_Allow_Starting_With_Numbers()
 		{
 			// arrange

@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Hanssens.Net.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests.InTests
 {
-	[TestFixture]
     public class LinqExtensionTests
     {
 
 
-		[Test]
+		[Fact]
         public void In_Should_Fetch_Single_Value_From_Collection()
         {
             var expected = "Harry";
@@ -24,7 +23,7 @@ namespace Hanssens.Net.Tests.InTests
             target.Should().BeEquivalentTo(expected, "Harry should be found");
         }
 
-        [Test]
+        [Fact]
         public void In_Should_Fetch_Single_Object_From_Collection()
         {
             // Note: Requires object to implement IEquality (or override Equals/GetHashCode)
@@ -48,7 +47,7 @@ namespace Hanssens.Net.Tests.InTests
 
 
 
-        [Test]
+        [Fact]
         public void In_Should_Filter_Multiple_Values_From_Collection()
         {
             var expectedValues = new int[] {1, 2, 3, 4, 5};
@@ -59,10 +58,10 @@ namespace Hanssens.Net.Tests.InTests
 
             var target = values.Where(v => v.In(expectedValues));
 
-            Assert.IsTrue(target.Count() == expectedValues.Count());
+            target.Count().Should().Be(expectedValues.Count());
 
             foreach (var i in target)
-                Assert.IsTrue(expectedValues.Any(c => c == i));
+                expectedValues.Any(c => c == i).Should().BeTrue();
         }
 
         internal class Customer : IEquatable<Customer>

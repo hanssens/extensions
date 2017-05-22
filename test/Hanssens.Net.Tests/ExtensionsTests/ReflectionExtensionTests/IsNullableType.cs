@@ -1,17 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.ComponentModel;
 using FluentAssertions;
 using Hanssens.Net.Extensions;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
 {
-    [TestFixture, Category("Reflection/IsNullableType")]
+    //[TestFixture, Category("Reflection/IsNullableType")]
     public class IsNullableTypeTests
     {
-        [Test]
+        [Fact]
         public void IsNullableTypeShouldValidateNullType()
         {
             // arrange
@@ -24,7 +22,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             target.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void IsNullableTypeShouldValidateNullableReferenceType()
         {
             // arrange
@@ -37,7 +35,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             target.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void IsNullableTypeShouldInvalidateNonNullableReferenceType()
         {
             // arrange

@@ -2,24 +2,22 @@
 using FluentAssertions;
 using Hanssens.Net.Extensions;
 using System.Collections.Generic;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests
 {
-    [TestFixture]
     public class RandomizeExtensionTests
     {
 
-        [Test]
+        [Fact]
         public void Randomizer_Should_Initialize()
         {
             var target = new Randomizer();
-            Assert.IsNotNull(target);
 			target.Should ().NotBeNull ();
 			target.Should ().BeOfType<Randomizer> ();
         }
 
-        [Test]
+        [Fact]
         public void Randomizer_Should_Initialize_And_Dispose()
         {
             using (var target = new Randomizer())
@@ -29,7 +27,7 @@ namespace Hanssens.Net.Tests
             }
         }
 
-        [Test]
+        [Fact]
         public void Randomizer_Should_Return_Random_Entries_From_A_Collection()
         {
             var values = new List<string>();
@@ -44,11 +42,11 @@ namespace Hanssens.Net.Tests
                 // Assert that in the list of 100 values, two randomly choses will not be the same
                 // Statitically, this is a rubbish test; there is always a slight probability the
                 // two values are the same
-                Assert.AreNotEqual(firstValue, secondValue);
+                firstValue.Should().NotBeSameAs(secondValue);
             }
         }
 
-        [Test]
+        [Fact]
         public void Randomizer_Should_Give_Different_Results_Each_Time_Initialized()
         {
 			// Arrange

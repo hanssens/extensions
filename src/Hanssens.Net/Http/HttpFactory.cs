@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -63,37 +61,39 @@ namespace Hanssens.Net.Http
             return GetAsync(requestUri).Result;
         }
 
-        public HttpResponseMessage Post<T>(string requestUri, T body)
+        public HttpResponseMessage Post<T>(string requestUri, T body, Dictionary<string, string> headers = null)
         {
-            return PostAsync(requestUri, body).Result;
+            return PostAsync(requestUri, body: body, headers: headers).Result;
         }
 
-        public HttpResponseMessage Put<T>(string requestUri, T body)
+        public HttpResponseMessage Put<T>(string requestUri, T body, Dictionary<string, string> headers = null)
         {
-            return PutAsync(requestUri, body).Result;
+            return PutAsync(requestUri, body: body, headers: headers).Result;
         }
 
         public async Task<HttpResponseMessage> DeleteAsync(string requestUri)
         {
-            return await Execute(HttpMethod.Delete, requestUri, "");
+            // TODO: investigate the proper use of a 'body' in a DELETE operation
+            // see also: http://stackoverflow.com/questions/299628/is-an-entity-body-allowed-for-an-http-delete-request
+            return await Execute(HttpMethod.Delete, requestUri, body: string.Empty, headers: null);
         }
 
         public async Task<HttpResponseMessage> GetAsync(string requestUri)
         {
-            return await Execute(HttpMethod.Get, requestUri, "");
+            return await Execute(HttpMethod.Get, requestUri, body: string.Empty, headers: null);
         }
 
-        public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body)
+        public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null)
         {
-            return await Execute(HttpMethod.Post, requestUri, body);
+            return await Execute(HttpMethod.Post, requestUri, body, headers);
         }
 
-        public async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body)
+        public async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null)
         {
-            return await Execute(HttpMethod.Put, requestUri, body);
+            return await Execute(HttpMethod.Put, requestUri, body, headers);
         }
 
-        private async Task<HttpResponseMessage> Execute<T>(HttpMethod httpMethod, string requestUri, T body)
+        private async Task<HttpResponseMessage> Execute<T>(HttpMethod httpMethod, string requestUri, T body, Dictionary<string, string> headers)
         {
             var request = new HttpRequestMessage(httpMethod, requestUri);
 
@@ -131,13 +131,15 @@ namespace Hanssens.Net.Http
                 // property to "application/json". See also: http://stackoverflow.com/a/5197548/1039247
                 // Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
                 //request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
-                request.Headers.Add("Accept", "application/json");
+                //request.Headers.Add("Accept", "application/json");
+                http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 // by default, the content header 'content-type' may already be provided
                 // in this case, reset it so we can make sure the appropriate header is set
                 // incl. the charset. Having charset utf8 is OUR convention in this library.
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
+                
 
                 // define the content length, as per RFC2616 10.4.12:
                 //   The server refuses to accept the request without a defined Content-
@@ -147,6 +149,23 @@ namespace Hanssens.Net.Http
                 // now, by default we're setting it to '0' and later on, only if there are indeed
                 // arguments (e.g. a message body) provided, the actual size will be calculated
                 request.Content.Headers.Add("Content-Length", contentLength.ToString());
+
+                // apply custom headers, if any are provided
+                if (headers != null)
+                {
+                    foreach (var customHeader in headers)
+                    {
+                        // note: in the .net implementation of the HttpHeaders class there is a lot
+                        // of stuff preventing your from simply "adding headers". basically, the
+                        // implementation forces you to add ContentHeaders, AuthorizationHeaders etc.
+                        // also, there is way too much validation on this, where a simple .Contains()
+                        // triggers this validation as well and even throws InvalidOperationExceptions. 
+                        // simply put, we are being stubborn and add the values anyhow, without
+                        // meddling validation. more info:
+                        // https://github.com/dotnet/corefx/blob/master/src/System.Net.Http/src/System/Net/Http/Headers/HttpHeaders.cs
+                        request.Headers.TryAddWithoutValidation(customHeader.Key, customHeader.Value);
+                    }
+                }
 
                 // execute the request
                 return await http.SendAsync(request);

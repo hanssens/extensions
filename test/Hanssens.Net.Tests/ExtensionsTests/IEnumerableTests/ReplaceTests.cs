@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using FluentAssertions;
-using NUnit.Framework;
 using Hanssens.Net.Extensions;
+using Xunit;
 
 namespace Hanssens.Net.Tests
 {
-    [TestFixture, Category("IEnumerableExtensions/Replace")]
+    //[TestFixture, Category("IEnumerableExtensions/Replace")]
     public class ReplaceTests
     {
-        [Test]
+        [Fact]
         public void Replace_Should_Throw_Exception_If_IList_IsNull()
         {
             // arrange
@@ -21,7 +20,7 @@ namespace Hanssens.Net.Tests
             Assert.Throws<ArgumentNullException>(() => collection.Replace("foo", "bar"));
         }
 
-        [Test]
+        [Fact]
         public void Replace_Should_Throw_Exception_If_IEnumerable_IsNull()
         {
             // arrange
@@ -31,7 +30,7 @@ namespace Hanssens.Net.Tests
             Assert.Throws<ArgumentNullException>(() => collection.Replace("foo", "bar"));
         }
 
-        [Test]
+        [Fact]
         public void Replace_Should_Replace_Single_Value_In_IList()
         {
             // arrange
@@ -53,7 +52,7 @@ namespace Hanssens.Net.Tests
             collection.Count.Should().Be(originalCollectionCount, because: "length of the collection should remain the same");
         }
 
-        [Test]
+        [Fact]
         public void Replace_Should_Replace_Multiple_Values_In_IList()
         {
             // arrange
@@ -79,7 +78,7 @@ namespace Hanssens.Net.Tests
             collection.Count(c => c == "w00t").Should().Be(originalWordCount, because: "same amount of items should be replaced");
         }
 
-        [Test]
+        [Fact]
         public void Replace_Should_Replace_Nothing_When_No_Matches_Are_Found()
         {
             // arrange

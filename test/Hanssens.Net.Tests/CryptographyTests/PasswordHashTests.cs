@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using FluentAssertions;
+﻿using FluentAssertions;
 using Hanssens.Net.Cryptography;
-using NUnit.Framework;
+using Xunit;
 
 namespace Hanssens.Net.Tests.CryptographyTests
 {
-    [TestFixture(Category = "Cryptography/PasswordHash")]
+    //[TestFixture(Category = "Cryptography/PasswordHash")]
     public class PasswordHashTests
     {
-        [Test]
+        [Fact]
         public void PasswordHash_CreateHash_Target_Should_Differ_From_Source()
         {
             // arrange
@@ -25,7 +21,7 @@ namespace Hanssens.Net.Tests.CryptographyTests
             target.Should().NotBe(password);
         }
 
-        [Test]
+        [Fact]
         public void PasswordHash_CreateHash_Should_Provide_Validatable_Combination()
         {
             // arrange
@@ -39,7 +35,7 @@ namespace Hanssens.Net.Tests.CryptographyTests
             target.Should().BeTrue();
         }
 
-        [Test]
+        [Fact]
         public void PasswordHash_CreateHash_Should_Create_Unique_Hashes()
         {
             // arrange - by defining the same password twice
@@ -56,7 +52,7 @@ namespace Hanssens.Net.Tests.CryptographyTests
             hash1.Should().NotBe(hash2);
         }
 
-        [Test]
+        [Fact]
         public void PasswordHash_ValidatePassword_Should_Only_Match_Same_Password_Even_With_Different_Hashes()
         {
             // arrange - by creating two hashes with the same password
