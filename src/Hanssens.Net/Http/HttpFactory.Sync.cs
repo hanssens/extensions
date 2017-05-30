@@ -14,9 +14,9 @@ namespace Hanssens.Net.Http
             return DeleteAsync(requestUri).Result;
         }
 
-        public HttpResponseMessage Get(string requestUri)
+        public HttpResponseMessage Get(string requestUri, Dictionary<string, string> headers = null)
         {
-            return GetAsync(requestUri).Result;
+            return GetAsync(requestUri, headers).Result;
         }
 
         public HttpResponseMessage Patch<T>(string requestUri, T body, Dictionary<string, string> headers = null)

@@ -44,9 +44,9 @@ namespace Hanssens.Net.Http
             /// Executes a single async 'GET' request.
             /// </summary>
             /// <param name="requestUri">Endpoint to the remote resource</param>
-            public static async Task<HttpResponseMessage> GetAsync(string requestUri)
+            public static async Task<HttpResponseMessage> GetAsync(string requestUri, Dictionary<string, string> headers = null)
             {
-                return await Factory.GetAsync(requestUri);
+                return await Factory.GetAsync(requestUri, headers);
             }
 
             public static HttpResponseMessage Patch<T>(string requestUri, T body) where T : class
