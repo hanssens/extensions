@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Threading.Tasks;
 using Hanssens.Net.Http;
 using FluentAssertions;
 using Xunit;
@@ -28,7 +29,7 @@ namespace Hanssens.Net.Tests.HttpTests
         }
         
         [Fact]
-        public void HttpFactory_Simple_Get_Should_Return_Json_String()
+        public async Task HttpFactory_Simple_Get_Should_Return_Json_String()
         {
             // arrange
             var endpoint = @"http://jsonplaceholder.typicode.com/posts";
@@ -40,6 +41,11 @@ namespace Hanssens.Net.Tests.HttpTests
             target.Should().NotBeNull();
             target.StatusCode.Should().Be(HttpStatusCode.OK);
             target.IsSuccessStatusCode.Should().BeTrue();
+            var c = target.Content.ToString();
+            var foo = await target.Content.ReadAsStringAsync();
+
+            //requestContent.ReadAsStringAsync().Result;
+            foo.Should().Be("asdfsdafklasdjfklsdajfsdfkj");
         }
 
         [Fact]
