@@ -49,6 +49,16 @@ namespace Hanssens.Net.Http
                 return await Factory.GetAsync(requestUri);
             }
 
+            public static HttpResponseMessage Patch<T>(string requestUri, T body) where T : class
+            {
+                return Factory.Patch(requestUri, body);
+            }
+
+            public static async Task<HttpResponseMessage> PatchAsync<T>(string requestUri, T body) where T : class
+            {
+                return await Factory.PatchAsync(requestUri, body);
+            }
+
             public static HttpResponseMessage Post<T>(string requestUri, T body) where T : class
             {
                 return Factory.Post(requestUri, body);

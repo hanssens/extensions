@@ -21,6 +21,11 @@ namespace Hanssens.Net.Http
             return await Execute(HttpMethod.Get, requestUri, body: string.Empty, headers: null);
         }
 
+        public async Task<HttpResponseMessage> PatchAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null)
+        {
+            return await Execute(new HttpMethod("PATCH"), requestUri, body, headers);
+        }
+
         public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null)
         {
             return await Execute(HttpMethod.Post, requestUri, body, headers);

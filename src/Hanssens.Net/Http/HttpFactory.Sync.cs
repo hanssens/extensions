@@ -19,6 +19,11 @@ namespace Hanssens.Net.Http
             return GetAsync(requestUri).Result;
         }
 
+        public HttpResponseMessage Patch<T>(string requestUri, T body, Dictionary<string, string> headers = null)
+        {
+            return PatchAsync(requestUri, body: body, headers: headers).Result;
+        }
+
         public HttpResponseMessage Post<T>(string requestUri, T body, Dictionary<string, string> headers = null)
         {
             return PostAsync(requestUri, body: body, headers: headers).Result;
