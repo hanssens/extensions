@@ -10,7 +10,7 @@ namespace Hanssens.Net.Http
     /// <summary>
     /// Http utility, optimized for multiple http calls.
     /// </summary>
-    public class HttpFactory : IDisposable
+    public partial class HttpFactory : IDisposable
     {
         /// <summary>
         /// Single instance of the HttpClient.
@@ -49,48 +49,6 @@ namespace Hanssens.Net.Http
         {
             http = httpClient;
             self_disposable = false;
-        }
-
-        public HttpResponseMessage Delete(string requestUri)
-        {
-            return DeleteAsync(requestUri).Result;
-        }
-
-        public HttpResponseMessage Get(string requestUri)
-        {
-            return GetAsync(requestUri).Result;
-        }
-
-        public HttpResponseMessage Post<T>(string requestUri, T body, Dictionary<string, string> headers = null)
-        {
-            return PostAsync(requestUri, body: body, headers: headers).Result;
-        }
-
-        public HttpResponseMessage Put<T>(string requestUri, T body, Dictionary<string, string> headers = null)
-        {
-            return PutAsync(requestUri, body: body, headers: headers).Result;
-        }
-
-        public async Task<HttpResponseMessage> DeleteAsync(string requestUri)
-        {
-            // TODO: investigate the proper use of a 'body' in a DELETE operation
-            // see also: http://stackoverflow.com/questions/299628/is-an-entity-body-allowed-for-an-http-delete-request
-            return await Execute(HttpMethod.Delete, requestUri, body: string.Empty, headers: null);
-        }
-
-        public async Task<HttpResponseMessage> GetAsync(string requestUri)
-        {
-            return await Execute(HttpMethod.Get, requestUri, body: string.Empty, headers: null);
-        }
-
-        public async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null)
-        {
-            return await Execute(HttpMethod.Post, requestUri, body, headers);
-        }
-
-        public async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null)
-        {
-            return await Execute(HttpMethod.Put, requestUri, body, headers);
         }
 
         private async Task<HttpResponseMessage> Execute<T>(HttpMethod httpMethod, string requestUri, T body, Dictionary<string, string> headers)
@@ -182,65 +140,5 @@ namespace Hanssens.Net.Http
                 http.Dispose();
         }
 
-        /// <summary>
-        /// Provides 'simple', shorthand functions intended for quickly making a single http call.
-        /// </summary>
-        public static class Simple
-        {
-            private static readonly HttpFactory Factory;
-
-            static Simple()
-            {
-                Factory = new HttpFactory();
-            }
-
-            public static HttpResponseMessage Delete(string requestUri)
-            {
-                return Factory.DeleteAsync(requestUri).Result;
-            }
-
-            public static async Task<HttpResponseMessage> DeleteAsync(string requestUri)
-            {
-                return await Factory.DeleteAsync(requestUri);
-            }
-
-            /// <summary>
-            /// Executes a single 'GET' request.
-            /// </summary>
-            /// <param name="requestUri">Endpoint to the remote resource</param>
-            public static HttpResponseMessage Get(string requestUri)
-            {
-                return Factory.Get(requestUri);
-            }
-
-            /// <summary>
-            /// Executes a single async 'GET' request.
-            /// </summary>
-            /// <param name="requestUri">Endpoint to the remote resource</param>
-            public static async Task<HttpResponseMessage> GetAsync(string requestUri)
-            {
-                return await Factory.GetAsync(requestUri);
-            }
-
-            public static HttpResponseMessage Post<T>(string requestUri, T body) where T: class
-            {
-                return Factory.Post(requestUri, body);
-            }
-
-            public static async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body) where T : class
-            {
-                return await Factory.PostAsync(requestUri, body);
-            }
-
-            public static HttpResponseMessage Put<T>(string requestUri, T body) where T : class
-            {
-                return Factory.Put(requestUri, body);
-            }
-
-            public static async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body) where T : class
-            {
-                return await Factory.PutAsync(requestUri, body);
-            }
-        }
     }
 }
