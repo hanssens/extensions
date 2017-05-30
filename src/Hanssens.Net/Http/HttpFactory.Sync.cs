@@ -9,9 +9,9 @@ namespace Hanssens.Net.Http
 {
     public partial class HttpFactory
     {
-        public HttpResponseMessage Delete(string requestUri)
+        public HttpResponseMessage Delete(string requestUri, Dictionary<string, string> headers = null)
         {
-            return DeleteAsync(requestUri).Result;
+            return DeleteAsync(requestUri, headers).Result;
         }
 
         public HttpResponseMessage Get(string requestUri, Dictionary<string, string> headers = null)

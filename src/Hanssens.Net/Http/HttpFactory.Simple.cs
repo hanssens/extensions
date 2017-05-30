@@ -21,14 +21,14 @@ namespace Hanssens.Net.Http
                 Factory = new HttpFactory();
             }
 
-            public static HttpResponseMessage Delete(string requestUri)
+            public static HttpResponseMessage Delete(string requestUri, Dictionary<string, string> headers = null)
             {
-                return Factory.DeleteAsync(requestUri).Result;
+                return Factory.DeleteAsync(requestUri, headers).Result;
             }
 
-            public static async Task<HttpResponseMessage> DeleteAsync(string requestUri)
+            public static async Task<HttpResponseMessage> DeleteAsync(string requestUri, Dictionary<string, string> headers = null)
             {
-                return await Factory.DeleteAsync(requestUri);
+                return await Factory.DeleteAsync(requestUri, headers);
             }
 
             /// <summary>

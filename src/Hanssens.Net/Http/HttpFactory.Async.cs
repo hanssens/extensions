@@ -9,7 +9,7 @@ namespace Hanssens.Net.Http
 {
     public partial class HttpFactory
     {
-        public async Task<HttpResponseMessage> DeleteAsync(string requestUri)
+        public async Task<HttpResponseMessage> DeleteAsync(string requestUri, Dictionary<string, string> headers = null)
         {
             // TODO: investigate the proper use of a 'body' in a DELETE operation
             // see also: http://stackoverflow.com/questions/299628/is-an-entity-body-allowed-for-an-http-delete-request
