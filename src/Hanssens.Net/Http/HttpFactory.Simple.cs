@@ -32,9 +32,9 @@ namespace Hanssens.Net.Http
             /// Executes a single 'GET' request.
             /// </summary>
             /// <param name="requestUri">Endpoint to the remote resource</param>
-            public static HttpResponseMessage Get(string requestUri)
+            public static HttpResponseMessage Get(string requestUri, Dictionary<string, string> headers = null)
             {
-                return Factory.Get(requestUri);
+                return Factory.Get(requestUri, headers);
             }
 
             /// <summary>
@@ -46,34 +46,34 @@ namespace Hanssens.Net.Http
                 return await Factory.GetAsync(requestUri, headers);
             }
 
-            public static HttpResponseMessage Patch<T>(string requestUri, T body) where T : class
+            public static HttpResponseMessage Patch<T>(string requestUri, T body, Dictionary<string, string> headers = null) where T : class
             {
-                return Factory.Patch(requestUri, body);
+                return Factory.Patch(requestUri, body, headers);
             }
 
-            public static async Task<HttpResponseMessage> PatchAsync<T>(string requestUri, T body) where T : class
+            public static async Task<HttpResponseMessage> PatchAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null) where T : class
             {
-                return await Factory.PatchAsync(requestUri, body);
+                return await Factory.PatchAsync(requestUri, body, headers);
             }
 
-            public static HttpResponseMessage Post<T>(string requestUri, T body) where T : class
+            public static HttpResponseMessage Post<T>(string requestUri, T body, Dictionary<string, string> headers = null) where T : class
             {
-                return Factory.Post(requestUri, body);
+                return Factory.Post(requestUri, body, headers);
             }
 
-            public static async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body) where T : class
+            public static async Task<HttpResponseMessage> PostAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null) where T : class
             {
-                return await Factory.PostAsync(requestUri, body);
+                return await Factory.PostAsync(requestUri, body, headers);
             }
 
-            public static HttpResponseMessage Put<T>(string requestUri, T body) where T : class
+            public static HttpResponseMessage Put<T>(string requestUri, T body, Dictionary<string, string> headers = null) where T : class
             {
-                return Factory.Put(requestUri, body);
+                return Factory.Put(requestUri, body, headers);
             }
 
-            public static async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body) where T : class
+            public static async Task<HttpResponseMessage> PutAsync<T>(string requestUri, T body, Dictionary<string, string> headers = null) where T : class
             {
-                return await Factory.PutAsync(requestUri, body);
+                return await Factory.PutAsync(requestUri, body, headers);
             }
         }
     }
