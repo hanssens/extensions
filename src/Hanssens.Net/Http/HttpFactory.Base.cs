@@ -26,6 +26,12 @@ namespace Hanssens.Net.Http
         protected HttpClient http { get; private set; }
 
         /// <summary>
+        /// Set by convention all headers, incl. Accept, to enforce 'application/json'.
+        /// Defaults to true. 
+        /// </summary>
+        public bool EnforceJson { get; set; } = true;
+
+        /// <summary>
         /// Indicates if the factory should cleanup itself. Defaults to 'true',
         /// but is not disposed when an external httpclient is passed through the constructor.
         /// </summary>
@@ -34,6 +40,9 @@ namespace Hanssens.Net.Http
         /// <summary>
         /// Initializes a new instance of the HttpClient, which will self dispose.
         /// </summary>
+        /// <remarks>
+        /// Preferred usage, however, is to use the overload and provide a HttpClient yourself.
+        /// </remarks>
         public HttpFactory()
         {
             http = new HttpClient();
@@ -41,7 +50,7 @@ namespace Hanssens.Net.Http
 
         /// <summary>
         /// Initializes a new instance of the HttpClient, with a reusable HttpClient.
-        /// Using this overload, the provided HttpClient is not explicitely disposed when 
+        /// Using this overload, the provided HttpClient is not explicitly disposed when 
         /// the HttpFactory is disposed.
         /// </summary>
         /// <param name="httpClient"></param>
@@ -98,6 +107,10 @@ namespace Hanssens.Net.Http
                 request.Content.Headers.Remove("Content-Type");
                 request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
                 
+                // When 'EnforceJson' is enabled, by convention add 'application/json' headers.
+                if (EnforceJson)
+                {
+                }
 
                 // define the content length, as per RFC2616 10.4.12:
                 //   The server refuses to accept the request without a defined Content-
