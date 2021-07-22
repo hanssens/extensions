@@ -26,6 +26,12 @@ namespace Hanssens.Net.Http
         protected HttpClient http { get; private set; }
 
         /// <summary>
+        /// Set by convention all headers, incl. Accept, to enforce 'application/json'.
+        /// Defaults to true. 
+        /// </summary>
+        public bool EnforceJson { get; set; } = true;
+
+        /// <summary>
         /// Indicates if the factory should cleanup itself. Defaults to 'true',
         /// but is not disposed when an external httpclient is passed through the constructor.
         /// </summary>
@@ -34,6 +40,9 @@ namespace Hanssens.Net.Http
         /// <summary>
         /// Initializes a new instance of the HttpClient, which will self dispose.
         /// </summary>
+        /// <remarks>
+        /// Preferred usage, however, is to use the overload and provide a HttpClient yourself.
+        /// </remarks>
         public HttpFactory()
         {
             http = new HttpClient();
@@ -41,7 +50,7 @@ namespace Hanssens.Net.Http
 
         /// <summary>
         /// Initializes a new instance of the HttpClient, with a reusable HttpClient.
-        /// Using this overload, the provided HttpClient is not explicitely disposed when 
+        /// Using this overload, the provided HttpClient is not explicitly disposed when 
         /// the HttpFactory is disposed.
         /// </summary>
         /// <param name="httpClient"></param>
@@ -82,22 +91,25 @@ namespace Hanssens.Net.Http
 
             try
             {
-                // some APIs want you to supply the appropriate "Accept" header
-                // in the request to get the wanted response type.
-                // For example if an API can return data in XML and JSON and you
-                // want the JSON result, you would need to set the HttpWebRequest.Accept
-                // property to "application/json". See also: http://stackoverflow.com/a/5197548/1039247
-                // Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
-                //request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
-                //request.Headers.Add("Accept", "application/json");
-                http.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-                // by default, the content header 'content-type' may already be provided
-                // in this case, reset it so we can make sure the appropriate header is set
-                // incl. the charset. Having charset utf8 is OUR convention in this library.
-                request.Content.Headers.Remove("Content-Type");
-                request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
-                
+                // When 'EnforceJson' is enabled, by convention add 'application/json' headers.
+                if (EnforceJson)
+                {
+                    // some APIs want you to supply the appropriate "Accept" header
+                    // in the request to get the wanted response type.
+                    // For example if an API can return data in XML and JSON and you
+                    // want the JSON result, you would need to set the HttpWebRequest.Accept
+                    // property to "application/json". See also: http://stackoverflow.com/a/5197548/1039247
+                    // Also, specs at RFC4627: http://www.ietf.org/rfc/rfc4627.txt
+                    var jsonAcceptHeader = new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json");
+                    http.DefaultRequestHeaders.Accept.Remove(jsonAcceptHeader);
+                    http.DefaultRequestHeaders.Accept.Add(jsonAcceptHeader);
+                    
+                    // by default, the content header 'content-type' may already be provided
+                    // in this case, reset it so we can make sure the appropriate header is set
+                    // incl. the charset. Having charset utf8 is OUR convention in this library.
+                    request.Content.Headers.Remove("Content-Type");
+                    request.Content.Headers.Add("Content-Type", "application/json; charset=utf-8");
+                }
 
                 // define the content length, as per RFC2616 10.4.12:
                 //   The server refuses to accept the request without a defined Content-
@@ -130,7 +142,7 @@ namespace Hanssens.Net.Http
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new HttpFactoryException(ex.Message, ex);
             }
         }
 

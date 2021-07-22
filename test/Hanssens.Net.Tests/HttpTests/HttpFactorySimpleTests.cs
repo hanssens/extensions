@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Hanssens.Net.Http;
 using FluentAssertions;
@@ -80,5 +81,25 @@ namespace Hanssens.Net.Tests.HttpTests
             target.IsSuccessStatusCode.Should().BeTrue();
         }
         
+        [Fact]
+        public void HttpFactory_Request_Should_Only_Have_One_Access_Header()
+        {
+            var endpoint = @"http://jsonplaceholder.typicode.com/posts";
+            
+            // execute same operation twice, see bug #41
+            for (var i = 0; i < 2; i++)
+            {
+                var target = HttpFactory.Simple.Get(endpoint);
+
+                // assert
+                target.Should().NotBeNull();
+                target.StatusCode.Should().Be(HttpStatusCode.OK);
+                target.IsSuccessStatusCode.Should().BeTrue();    
+
+                // assert - except an 'Accept' header, but exactly/only one
+                target.RequestMessage.Headers.Accept.Any();
+                target.RequestMessage.Headers.Accept.Count.Should().Be(1, because: "exactly 'one' Accept header is expected");
+            }
+        }
     }
 }
