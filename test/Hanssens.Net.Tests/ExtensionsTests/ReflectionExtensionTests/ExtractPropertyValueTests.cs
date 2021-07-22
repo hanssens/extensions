@@ -80,6 +80,7 @@ namespace Hanssens.Net.Tests.ExtensionsTests.ReflectionExtensionTests
             Assert.Throws<ArgumentNullException>(() => Reflection.ExtractPropertyValue(expected, "Id"));
         }
 
+        [Fact]
         public void ExtractPropertyValue_Should_ThrowException_If_PropertyName_IsNullOrEmpty()
         {
             // arrange - note that this object has neither and Id, nor a Name and will result in exception
