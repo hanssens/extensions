@@ -2,28 +2,35 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.6</TargetFramework>
+    <IsPackable>True</IsPackable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <PackageProjectUrl>https://github.com/hanssens/extensions</PackageProjectUrl>
-    <PackageReleaseNotes>Release notes can be found at:
-https://github.com/hanssens/extensions/releases</PackageReleaseNotes>
-    <AssemblyVersion>2.1.1.0</AssemblyVersion>
-    <FileVersion>2.1.1.0</FileVersion>
-    <Version>2.1.1</Version>
+
+    <!-- package: nuget metadata -->
     <Authors>Juliën Hanssens</Authors>
     <Company />
-    <PackageId>Hanssens.Net.Extensions</PackageId>
     <Description>The Swiss army knife, or pragmatic ninja toolbelt, for dotnet core helpers. Pure 100% managed C# code, with as little dependencies as possible.</Description>
-    <PackageIconUrl>https://d17oy1vhnax1f7.cloudfront.net/items/1x2w321G3u3x2z0g120Q/hanssens-beer.png</PackageIconUrl>
-    <PackageTags>c# csharp dotnet core dotnet-core extensions helpers hanssens</PackageTags>
-    <PackageLicenseUrl>https://github.com/hanssens/extensions/blob/master/LICENSE.md</PackageLicenseUrl>
-    <RepositoryUrl>https://github.com/hanssens/extensions.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
     <NeutralLanguage />
+    <PackageId>Hanssens.Net.Extensions</PackageId>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+    <PackageProjectUrl>https://github.com/hanssens/extensions</PackageProjectUrl>
+    <PackageReleaseNotes>Release notes can be found at: https://github.com/hanssens/extensions/releases</PackageReleaseNotes>
+    <PackageTags>c# csharp dotnet core dotnet-core extensions helpers hanssens</PackageTags>
     <Product>Hanssens.Net.Extensions</Product>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/hanssens/extensions.git</RepositoryUrl>
+    
+    <!-- package: versions -->
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
+    <Version>2.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../LICENSE.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
